@@ -1,8 +1,10 @@
 # dotfiles
 
 ## TODO:
-- [ ] neovim
-- [ ] hammerspoon
+- [x] neovim
+- [x] hammerspoon
 - [ ] wezterm
 - [ ] tmux
-- [ ] bash/zsh/fish
+- [ ] bash
+- [ ] zsh
+- [x] fish
