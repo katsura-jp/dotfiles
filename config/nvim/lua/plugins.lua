@@ -14,11 +14,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  "nvim-lualine/lualine.nvim",
   "folke/which-key.nvim",
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
+  -- rich status bar
+  "nvim-lualine/lualine.nvim",
+  -- colorscheme
   "folke/tokyonight.nvim",
+  -- rich command line
   {
     "folke/noice.nvim",
     dependencies = {
@@ -26,6 +29,7 @@ require("lazy").setup({
       "rcarriga/nvim-notify",
     }
   },
+  -- filer
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.1",
@@ -33,6 +37,7 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim"
     }
   },
+  -- stylish surround selections
   "kylechui/nvim-surround",
   -- lsp
   "neovim/nvim-lspconfig",
