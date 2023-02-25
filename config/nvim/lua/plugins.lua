@@ -39,10 +39,11 @@ require("lazy").setup({
   },
   -- stylish surround selections
   "kylechui/nvim-surround",
-  -- lsp
-  "neovim/nvim-lspconfig",
+  -- mason
   "williamboman/mason.nvim",
+  -- LSP
+  "neovim/nvim-lspconfig",
   "williamboman/mason-lspconfig.nvim",
-  -- linter
+  -- Linters & Formatters
   "jose-elias-alvarez/null-ls.nvim",
 })
