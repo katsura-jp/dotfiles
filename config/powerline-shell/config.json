@@ -1,0 +1,17 @@
+{
+  "segments": [
+    "virtual_env",
+    "ssh",
+    "cwd",
+    "git",
+    "hg",
+    "jobs"
+  ],
+  "cwd": {
+    "mode": "plain"
+  },
+  "theme": "~/.config/powerline-shell/themes/nord.py",
+  "vcs": {
+    "show_symbol": true
+  }
+}
