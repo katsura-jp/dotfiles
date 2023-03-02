@@ -1,3 +1,8 @@
 config/nvim/lazy-lock.json
 config/powerline-shell/themes/__pycache__/
 
+
+config/fish/completions/
+config/fish/conf.d/
+config/fish/fish_variables
+config/fish/functions/
