@@ -23,6 +23,6 @@ ln -s ~/dotfiles/config/wezterm ~/.config/wezterm
 - [x] hammerspoon
 - [x] wezterm
 - [ ] tmux
-- [ ] bash
+- [x] bash
 - [ ] zsh
 - [x] fish
