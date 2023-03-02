@@ -1,5 +1,7 @@
 # symbolic link
 
+ln -sf $(realpath .bashrc) $HOME/.bashrc
+ln -sf $(realpath .bash_profile) $HOME/.bash_profile
 ln -sf $(realpath ./config/nvim) $HOME/.config/nvim
 ln -sf $(realpath ./config/wezterm) $HOME/.config/wezterm
 ln -sf $(realpath ./config/fish) $HOME/.config/fish
