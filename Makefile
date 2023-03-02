@@ -1,5 +1,4 @@
-.PHONY install-ubuntu
-install-ubuntu:
+.PHONY link
+link:
 	mkdir --ignore-fail-on-non-empty ~/.config
-	ln -s ~/dotfiles/config/nvim ~/.config/nvim
-	ln -s ~/dotfiles/config/wezterm ~/.config/wezterm
+	sh ./setup.sh
