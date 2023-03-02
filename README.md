@@ -10,7 +10,7 @@ xcode-select --install > /dev/null
 # install brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # install software
-brew install bash coreutils ripgrep neovim
+brew install bash coreutils ripgrep neovim xy
 brew install hammerspoon --cask
 
 # set bash
