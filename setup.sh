@@ -6,6 +6,8 @@ ln -sf $(realpath ./config/nvim) $HOME/.config/nvim
 ln -sf $(realpath ./config/wezterm) $HOME/.config/wezterm
 ln -sf $(realpath ./config/fish) $HOME/.config/fish
 ln -sf $(realpath ./config/powerline-shell) $HOME/.config/powerline-shell
+ln -sf $(realpath ./.fzf.bash) $HOME/.fzf.bash
+ln -sf $(realpath ./config/fzf) $HOME/.config/fzf
 
 if [ "$(uname)" == "Darwin" ]; then
   # mac
