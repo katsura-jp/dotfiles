@@ -47,3 +47,17 @@ eikana:start()
 
 escape2english = hs.eventtap.new({hs.eventtap.event.types.keyUp}, esc2eng)
 escape2english:start()
+
+-- window keybind
+function resize_window(rect)
+  local win = hs.window.focusedWindow()
+  win:move(rect)
+end
+hs.hotkey.bind({"cmd"}, "Up", hs.fnutils.partial(resize_window, hs.layout.maximized))
+hs.hotkey.bind({"cmd"}, "Right", hs.fnutils.partial(resize_window, hs.layout.right50))
+hs.hotkey.bind({"cmd"}, "Left", hs.fnutils.partial(resize_window, hs.layout.left50))
+
+-- window swicher
+switcher = hs.window.switcher.new()
+hs.hotkey.bind({'alt'},'tab', function()switcher:next()end)
+hs.hotkey.bind({'alt', 'shift'},'tab', function()switcher:previous()end)
