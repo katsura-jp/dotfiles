@@ -59,5 +59,10 @@ hs.hotkey.bind({"cmd"}, "Left", hs.fnutils.partial(resize_window, hs.layout.left
 
 -- window swicher
 switcher = hs.window.switcher.new()
+switcher.ui.showTitles = false
+switcher.ui.showSelectedTitle = false
+switcher.ui.showSelectedThumbnail = false
+switcher.ui.thumbnailSize = 256
+switcher.ui.backgroundColor = {0.0,0.0,0.0,0.0}
 hs.hotkey.bind({'alt'},'tab', function()switcher:next()end)
 hs.hotkey.bind({'alt', 'shift'},'tab', function()switcher:previous()end)
