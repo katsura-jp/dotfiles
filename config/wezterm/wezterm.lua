@@ -90,6 +90,7 @@ return {
     },
     font_size = 24.0,
     color_scheme = "tokyonight",
+    audible_bell = "Disabled",
 
     keys = {
         -- Quick Select
