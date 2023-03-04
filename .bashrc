@@ -15,6 +15,7 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
@@ -141,4 +142,5 @@ fi
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
-# [[ -s "$HOME/.qfc/bin/qfc.sh" ]] && source "$HOME/.qfc/bin/qfc.sh"
+# history sharing
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
