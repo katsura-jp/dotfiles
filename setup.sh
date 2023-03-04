@@ -10,7 +10,7 @@ ln -sf $(realpath ./config/fzf) $HOME/.config/
 
 if [ "$(uname)" == "Darwin" ]; then
   # mac
-  ln -sf $(realpath ./config/hammerspoon) $HOME/.hammerspoon
+  ln -sf $(realpath ./.hammerspoon) $HOME/.hammerspoon
 elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
   # windows
   :
