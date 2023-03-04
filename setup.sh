@@ -1,13 +1,12 @@
 # symbolic link
 
-ln -sf $(realpath .bashrc) $HOME/.bashrc
-ln -sf $(realpath .bash_profile) $HOME/.bash_profile
-ln -sf $(realpath ./config/nvim) $HOME/.config/nvim
-ln -sf $(realpath ./config/wezterm) $HOME/.config/wezterm
-ln -sf $(realpath ./config/fish) $HOME/.config/fish
-ln -sf $(realpath ./config/powerline-shell) $HOME/.config/powerline-shell
-ln -sf $(realpath ./.fzf.bash) $HOME/.fzf.bash
-ln -sf $(realpath ./config/fzf) $HOME/.config/fzf
+ln -sf $(realpath .bashrc) $HOME/
+ln -sf $(realpath .bash_profile) $HOME/
+ln -sf $(realpath ./config/nvim) $HOME/.config/
+ln -sf $(realpath ./config/wezterm) $HOME/.config/
+ln -sf $(realpath ./config/powerline-shell) $HOME/.config/
+ln -sf $(realpath ./.fzf.bash) $HOME/
+ln -sf $(realpath ./config/fzf) $HOME/.config/
 
 if [ "$(uname)" == "Darwin" ]; then
   # mac
