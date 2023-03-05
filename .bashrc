@@ -121,7 +121,11 @@ export LANG=en_US.UTF-8
 
 if [ "$(uname)" == "Darwin" ]; then
   # brew
-  eval $(/opt/homebrew/bin/brew shellenv)
+  if [ -f /opt/homebrew/bin/brew ]; then
+    eval $(/opt/homebrew/bin/brew shellenv)
+  elif [ -f /usr/local/bin/brew ]; then
+    eval $(/usr/local/bin/brew shellenv)
+  fi
 fi
 
 # pyenv
@@ -146,3 +150,8 @@ export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
 # history sharing
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# key-bind
+# bind -r "\C-p" "previous-history"
+bind -r "\C-p"
+
