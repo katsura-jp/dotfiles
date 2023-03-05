@@ -6,35 +6,11 @@ wezterm.on('update-right-status', function(window, pane)
   -- Each element holds the text for a cell in a "powerline" style << fade
   local cells = {}
 
-  -- Figure out the cwd and host of the current pane.
-  -- This will pick up the hostname for the remote host if your
-  -- shell is using OSC 7 on the remote host.
-  local cwd_uri = pane:get_current_working_dir()
-  if cwd_uri then
-    cwd_uri = cwd_uri:sub(8)
-    local slash = cwd_uri:find '/'
-    local cwd = ''
-    local hostname = ''
-    if slash then
-      hostname = cwd_uri:sub(1, slash - 1)
-      -- Remove the domain name portion of the hostname
-      local dot = hostname:find '[.]'
-      if dot then
-        hostname = hostname:sub(1, dot - 1)
-      end
-      -- and extract the cwd from the uri
-      cwd = cwd_uri:sub(slash)
-
-      table.insert(cells, cwd)
-      table.insert(cells, hostname)
-    end
-  end
-
-  -- I like my date/time in this style: "Wed Mar 3 08:14"
-  local date = wezterm.strftime '%a %b %-d %H:%M'
+  -- 1. date/time
+  local date = wezterm.strftime '%F %H:%M'
   table.insert(cells, date)
 
-  -- An entry for each battery (typically 0 or 1 battery)
+  -- 2. battery percentage
   for _, b in ipairs(wezterm.battery_info()) do
     table.insert(cells, string.format('%.0f%%', b.state_of_charge * 100))
   end
@@ -46,15 +22,15 @@ wezterm.on('update-right-status', function(window, pane)
 
   -- Color palette for the backgrounds of each cell
   local colors = {
-    '#3c1361',
-    '#52307c',
+    '#414868',
+    '#565f89',
     '#663a82',
     '#7c5295',
     '#b491c8',
   }
 
   -- Foreground color for the text across the fade
-  local text_fg = '#c0c0c0'
+  local text_fg = '#b4f9f8'
 
   -- The elements to be formatted
   local elements = {}
@@ -64,13 +40,11 @@ wezterm.on('update-right-status', function(window, pane)
   -- Translate a cell into elements
   function push(text, is_last)
     local cell_no = num_cells + 1
+    table.insert(elements, { Foreground = { Color = colors[cell_no] } })
+    table.insert(elements, { Text = SOLID_LEFT_ARROW })
     table.insert(elements, { Foreground = { Color = text_fg } })
     table.insert(elements, { Background = { Color = colors[cell_no] } })
     table.insert(elements, { Text = ' ' .. text .. ' ' })
-    if not is_last then
-      table.insert(elements, { Foreground = { Color = colors[cell_no + 1] } })
-      table.insert(elements, { Text = SOLID_LEFT_ARROW })
-    end
     num_cells = num_cells + 1
   end
 
@@ -83,7 +57,37 @@ wezterm.on('update-right-status', function(window, pane)
 end)
 
 
+wezterm.on(
+  'format-tab-title',
+  function(tab, tabs, panes, config, hover, max_width)
+    -- tokyo night color
+    local background = '#24283b'
+    local foreground = '#cfc9c2'
+
+    if tab.is_active then
+      background = '#414868'
+      foreground = '#b4f9f8'
+    elseif hover then
+      background = '#565f89'
+      foreground = '#c0caf5'
+    end
+    -- ensure that the titles fit in the available space,
+    -- and that we have room for the edges.
+    local title = wezterm.truncate_right(tab.active_pane.title, max_width + 2)
+
+    return {
+      { Background = { Color = background } },
+      { Foreground = { Color = foreground } },
+      { Text = ' ' .. title .. ' ' },
+    }
+  end
+)
+
 return {
+    window_frame = {
+        font = wezterm.font { family = 'Inconsolata', weight = 'Bold' },
+        font_size = 20.0,
+    },
     font = wezterm.font_with_fallback {
         'Inconsolata',
         'JetBrains Mono',
@@ -91,7 +95,7 @@ return {
     font_size = 24.0,
     color_scheme = "tokyonight",
     audible_bell = "Disabled",
-
+    use_fancy_tab_bar = true,
     keys = {
         -- Quick Select
         { 
