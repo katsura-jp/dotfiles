@@ -73,12 +73,12 @@ wezterm.on(
     end
     -- ensure that the titles fit in the available space,
     -- and that we have room for the edges.
-    local title = wezterm.truncate_right(tab.active_pane.title, max_width + 2)
-
+    local title = wezterm.truncate_right(tab.active_pane.title, max_width)
+    local tab_index = tab.tab_index
     return {
       { Background = { Color = background } },
       { Foreground = { Color = foreground } },
-      { Text = ' ' .. title .. ' ' },
+      { Text = tab_index .. ': ' .. title .. ' ' },
     }
   end
 )
