@@ -155,6 +155,3 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # bind -r "\C-p" "previous-history"
 bind -r "\C-p"
 
-if type wezterm > /dev/null 2>&1; then
-  alias ssh="wezterm ssh"
-fi
