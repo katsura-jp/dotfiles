@@ -36,8 +36,8 @@ pyenv global $PYTHON_VERSION
 pip install powerline-shell
 
 # set git
-git config --global user.name 'Naoki Katsura'
-git config --global user.email 'nok.addayo@gmail.com'
+git config --global user.name 'your name'
+git config --global user.email 'your address'
 git config --global core.editor nvim
 git config --global credential.helper osxkeychain
 
@@ -62,4 +62,3 @@ sh setup.sh
 - [ ] tmux
 - [x] bash
 - [ ] zsh
-- [x] fish
