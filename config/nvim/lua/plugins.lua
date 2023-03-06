@@ -53,4 +53,6 @@ require("lazy").setup({
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-nvim-lsp-signature-help',
   'ray-x/cmp-treesitter',
+  -- commentout
+  'preservim/nerdcommenter',
 })
