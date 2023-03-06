@@ -1,3 +1,5 @@
+hs.window.animationDuration = 0
+
 -- key bind
 local function toggleIME(event)
     local c = event:getKeyCode()
@@ -39,6 +41,21 @@ end
 hs.hotkey.bind({"cmd"}, "Up", hs.fnutils.partial(resize_window, hs.layout.maximized))
 hs.hotkey.bind({"cmd"}, "Right", hs.fnutils.partial(resize_window, hs.layout.right50))
 hs.hotkey.bind({"cmd"}, "Left", hs.fnutils.partial(resize_window, hs.layout.left50))
+
+function moveToNextScreen()
+  local app = hs.window.focusedWindow()
+  app:moveToScreen(app:screen():next())
+  app:maximize()
+end
+
+function moveToPrevScreen()
+  local app = hs.window.focusedWindow()
+  app:moveToScreen(app:screen():previous())
+  app:maximize()
+end
+
+hs.hotkey.bind({"shift", "cmd"}, "Right", moveToNextScreen)
+hs.hotkey.bind({"shift", "cmd"}, "Left", moveToPrevScreen)
 
 -- window swicher
 switcher = hs.window.switcher.new()
