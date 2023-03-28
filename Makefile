@@ -1,4 +1,8 @@
-.PHONY link
+.PHONY: link
 link:
-	mkdir --ignore-fail-on-non-empty ~/.config
-	sh ./setup.sh
+	mkdir -p ~/.config
+	bash ./scripts/link.sh
+	. ~/.bash_profile
+.PHONY: unlink
+unlink:
+	bash ./scripts/unlink.sh
