@@ -11,7 +11,14 @@ mason.setup({
   }
 })
 
-local servers = { 'pyright', 'lua_ls', 'bashls' }
+local servers = {
+  'pyright',
+  'lua_ls',
+  'bashls',
+  'rust_analyzer',
+  'tflint',
+  'gopls',
+}
 
 local status, mason_lspconfig = pcall(require, 'mason-lspconfig')
 if not status then return end
