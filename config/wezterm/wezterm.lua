@@ -84,6 +84,18 @@ wezterm.on(
   end
 )
 
+wezterm.on('toggle-opacity', function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+  if not overrides.window_background_opacity then
+    overrides.window_background_opacity = 0.3
+    overrides.text_background_opacity = 0.3
+  else
+    overrides.window_background_opacity = nil
+    overrides.text_background_opacity = nil
+  end
+  window:set_config_overrides(overrides)
+end)
+
 return {
     window_frame = {
         font = wezterm.font { family = 'Inconsolata', weight = 'Bold' },
@@ -99,7 +111,7 @@ return {
     use_fancy_tab_bar = true,
     keys = {
         -- Quick Select
-        { 
+        {
             key = ' ',
             mods = 'SHIFT|CTRL',
             action = wezterm.action.QuickSelect
@@ -143,6 +155,7 @@ return {
         },
         { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollByLine(-1) },
         { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollByLine(1) },
+        { key = 'u', mods = 'CTRL', action = wezterm.action.EmitEvent 'toggle-opacity' },
     },
     mouse_bindings = {
         -- Ctrl-click will open the link under the mouse cursor
