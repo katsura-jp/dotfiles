@@ -38,7 +38,7 @@ wezterm.on('update-right-status', function(window, pane)
   local num_cells = 0
 
   -- Translate a cell into elements
-  function push(text, is_last)
+  local function push(text)
     local cell_no = num_cells + 1
     table.insert(elements, { Foreground = { Color = colors[cell_no] } })
     table.insert(elements, { Text = SOLID_LEFT_ARROW })
@@ -48,9 +48,10 @@ wezterm.on('update-right-status', function(window, pane)
     num_cells = num_cells + 1
   end
 
+  table.insert(elements, { Background = { Color = '#333333' } })
   while #cells > 0 do
     local cell = table.remove(cells, 1)
-    push(cell, #cells == 0)
+    push(cell)
   end
 
   window:set_right_status(wezterm.format(elements))
