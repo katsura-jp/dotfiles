@@ -13,4 +13,4 @@ unlink_dotfile $HOME/.config/wezterm
 unlink_dotfile $HOME/.config/powerline-shell
 unlink_dotfile $HOME/.fzf.bash
 unlink_dotfile $HOME/.config/fzf
-unlink_dotfile $HOME/.config/.hammerspoon
+unlink_dotfile $HOME/.hammerspoon
