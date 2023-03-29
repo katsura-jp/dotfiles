@@ -38,7 +38,7 @@ wezterm.on('update-right-status', function(window, pane)
   local num_cells = 0
 
   -- Translate a cell into elements
-  function push(text, is_last)
+  local function push(text)
     local cell_no = num_cells + 1
     table.insert(elements, { Foreground = { Color = colors[cell_no] } })
     table.insert(elements, { Text = SOLID_LEFT_ARROW })
@@ -48,9 +48,10 @@ wezterm.on('update-right-status', function(window, pane)
     num_cells = num_cells + 1
   end
 
+  table.insert(elements, { Background = { Color = '#333333' } })
   while #cells > 0 do
     local cell = table.remove(cells, 1)
-    push(cell, #cells == 0)
+    push(cell)
   end
 
   window:set_right_status(wezterm.format(elements))
@@ -83,6 +84,18 @@ wezterm.on(
   end
 )
 
+wezterm.on('toggle-opacity', function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+  if not overrides.window_background_opacity then
+    overrides.window_background_opacity = 0.3
+    overrides.text_background_opacity = 0.3
+  else
+    overrides.window_background_opacity = nil
+    overrides.text_background_opacity = nil
+  end
+  window:set_config_overrides(overrides)
+end)
+
 return {
     window_frame = {
         font = wezterm.font { family = 'Inconsolata', weight = 'Bold' },
@@ -98,7 +111,7 @@ return {
     use_fancy_tab_bar = true,
     keys = {
         -- Quick Select
-        { 
+        {
             key = ' ',
             mods = 'SHIFT|CTRL',
             action = wezterm.action.QuickSelect
@@ -142,6 +155,7 @@ return {
         },
         { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollByLine(-1) },
         { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollByLine(1) },
+        { key = 'u', mods = 'CTRL', action = wezterm.action.EmitEvent 'toggle-opacity' },
     },
     mouse_bindings = {
         -- Ctrl-click will open the link under the mouse cursor
