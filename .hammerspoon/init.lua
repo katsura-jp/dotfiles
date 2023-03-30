@@ -78,7 +78,13 @@ function open(name)
   end
 end
 
-hs.hotkey.bind({"ctrl", "cmd"}, '1', open("wezterm"))
-hs.hotkey.bind({"ctrl", "cmd"}, '2', open("Visual Studio Code"))
-hs.hotkey.bind({"ctrl", "cmd"}, '3', open("Google Chrome"))
-hs.hotkey.bind({"ctrl", "cmd"}, '4', open("slack"))
+apps = {
+  "wezterm",
+  "Visual Studio Code",
+  "Google Chrome",
+  "slack",
+}
+
+for i, name in pairs(apps) do
+  hs.hotkey.bind({"ctrl", "cmd"}, tostring(i), open(name))
+end
