@@ -70,6 +70,7 @@ hs.hotkey.bind({'alt', 'shift'},'tab', function()switcher:previous()end)
 -- shortcut
 function open(name)
   return function()
+    hs.alert.show(name, hs.styledtext, hs.screen.primaryScreen(), 0.3)
     hs.application.launchOrFocus(name)
     if name == 'Finder' then
       hs.appfinder.appFromName(name):activate()
