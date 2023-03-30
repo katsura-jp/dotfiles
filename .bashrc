@@ -160,3 +160,7 @@ if [ -f $HOME/.cargo/env ]; then
 fi
 
 export PATH="$PATH:$HOME/.local/bin"
+
+if [ -d $HOME/.nodebrew ]; then
+  export PATH=$HOME/.nodebrew/current/bin:$PATH
+fi
