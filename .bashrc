@@ -158,3 +158,5 @@ bind -r "\C-p"
 if [ -f $HOME/.cargo/env ]; then
   . "$HOME/.cargo/env"
 fi
+
+export PATH="$PATH:$HOME/.local/bin"
