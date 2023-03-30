@@ -66,3 +66,18 @@ switcher.ui.thumbnailSize = 256
 switcher.ui.backgroundColor = {0.0,0.0,0.0,0.0}
 hs.hotkey.bind({'alt'},'tab', function()switcher:next()end)
 hs.hotkey.bind({'alt', 'shift'},'tab', function()switcher:previous()end)
+
+-- shortcut
+function open(name)
+  return function()
+    hs.application.launchOrFocus(name)
+    if name == 'Finder' then
+      hs.appfinder.appFromName(name):activate()
+    end
+  end
+end
+
+hs.hotkey.bind({"ctrl", "cmd"}, '1', open("Visual Studio Code"))
+hs.hotkey.bind({"ctrl", "cmd"}, '2', open("wezterm"))
+hs.hotkey.bind({"ctrl", "cmd"}, '3', open("slack"))
+hs.hotkey.bind({"ctrl", "cmd"}, '4', open("Google Chrome"))
