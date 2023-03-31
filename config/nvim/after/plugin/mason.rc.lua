@@ -18,6 +18,7 @@ local servers = {
   'rust_analyzer',
   'tflint',
   'gopls',
+  'dockerls',
 }
 
 local status, mason_lspconfig = pcall(require, 'mason-lspconfig')
