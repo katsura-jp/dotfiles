@@ -9,15 +9,28 @@
 xcode-select --install > /dev/null
 # install brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval $(/opt/homebrew/bin/brew shellenv)
+
 # install software
-brew install bash coreutils ripgrep neovim xy
-brew install hammerspoon --cask
+brew install bash coreutils ripgrep neovim xz wget
+brew install --cask hammerspoon
+brew install --cask visual-studio-code
+brew install --cask wezterm
+
+# git
+git config --global user.name '<name>'
+git config --global user.email '<mail address>'
+git config --global core.editor nvim
+git config --global credential.helper osxkeychain
+
+# install dotfiles
+git clone https://github.com/katsura-jp/dotfiles.git
+cd dotfiles
+make link
 
 # set bash
 sudo sh -c 'echo /opt/homebrew/bin/bash >> /etc/shells'
 chsh -s /opt/homebrew/bin/bash
-touch ~/.bashrc
-touch ~/.bash_profile
 
 # install pyenv
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
@@ -32,14 +45,20 @@ export PYTHON_VERSION='3.10.10'
 pyenv install $PYTHON_VERSION
 pyenv global $PYTHON_VERSION
 
-# install powerline-shell
-pip install powerline-shell
+# install python software
+pip install -U pip setuptools
+brew install pipx
+pipx ensurepath
+exec $SHELL -l
+pipx install powerline-shell
+pip install neovim
+pipx install pdm poetry
 
-# set git
-git config --global user.name 'your name'
-git config --global user.email 'your address'
-git config --global core.editor nvim
-git config --global credential.helper osxkeychain
+# npm
+brew install nodebrew
+nodebrew setup
+nodebrew install latest
+nodebrew use latest
 
 # bash
 # bash-it
@@ -48,20 +67,30 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --bin
-# bat
-brew install bat
 
+# Go lang
+brew install go gopls
+
+# Rust
+brew install rustup-init
+rustup-init
+exec $SHELL -l
 ```
 
 ### Setup
 ```
-sh setup.sh
+make link
 ```
 
-## TODO:
-- [x] neovim
-- [x] hammerspoon
-- [x] wezterm
-- [ ] tmux
-- [x] bash
-- [ ] zsh
+## Config
+| software | path |
+| :--      | :--  |
+| neovim (>=0.8)  | `config/nvim` |
+| wezterm | `config/wezterm/` |
+| fuzzy finder | `config/fzf`, `.fzf.bash` |
+| bash | `.bashrc`, `.bash_profile` |
+| powerline-shell | `config/powerline-shell` |
+| hammerspoon | `.hammerspoon` |
+
+
+
