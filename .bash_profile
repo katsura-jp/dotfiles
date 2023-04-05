@@ -16,3 +16,4 @@ export IRC_CLIENT='irssi'
 export TODO="t"
 export SCM_CHECK=true
 source $BASH_IT/bash_it.sh
+
