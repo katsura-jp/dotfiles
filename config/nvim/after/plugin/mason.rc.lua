@@ -19,6 +19,7 @@ local servers = {
   'tflint',
   'gopls',
   'dockerls',
+  'tsserver',
 }
 
 local status, mason_lspconfig = pcall(require, 'mason-lspconfig')
