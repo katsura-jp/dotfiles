@@ -75,6 +75,12 @@ brew install go gopls
 brew install rustup-init
 rustup-init
 exec $SHELL -l
+
+# gcloud
+brew install google-cloud-sdk
+# gcloud components update # if you already installed
+gcloud components install kubectl
+brew install --ignore-dependencies kubectx
 ```
 
 ### Setup
