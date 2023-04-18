@@ -121,8 +121,8 @@ export LANG=en_US.UTF-8
 
 if [ "$(uname)" == "Darwin" ]; then
   # brew
-  if [ -f $(brew --prefix)/bin/brew ]; then
-    eval $($(brew --prefix)/bin/brew shellenv)
+  if [ -f /opt/homebrew/bin/brew ]; then
+    eval $(/opt/homebrew/bin/brew shellenv)
   fi
   if [ -d $(brew --prefix)/share/google-cloud-sdk ]; then
     source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
