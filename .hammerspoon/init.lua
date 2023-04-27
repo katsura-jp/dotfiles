@@ -1,7 +1,7 @@
 hs.window.animationDuration = 0
 
 -- key bind
-local function toggleIME(event)
+function toggleIME(event)
     local c = event:getKeyCode()
     local f = event:getFlags()
     if c == hs.keycodes.map['space'] then
@@ -17,7 +17,7 @@ local function toggleIME(event)
     end
 end
 
-local function esc2eng(event)
+function esc2eng(event)
     local c = event:getKeyCode()
     if c == hs.keycodes.map['escape'] then
         if hs.keycodes.currentMethod() ~= 'Romaji' then
