@@ -174,3 +174,6 @@ if [ -d $HOME/.goenv ]; then
   export PATH="$PATH:$GOPATH/bin"
 fi
 
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
