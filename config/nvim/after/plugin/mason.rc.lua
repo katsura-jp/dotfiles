@@ -16,10 +16,10 @@ local servers = {
   'lua_ls',
   'bashls',
   'rust_analyzer',
-  'tflint',
+  -- 'tflint',
   'gopls',
   'dockerls',
-  'tsserver',
+  -- 'tsserver',
 }
 
 local status, mason_lspconfig = pcall(require, 'mason-lspconfig')
