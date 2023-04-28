@@ -177,3 +177,5 @@ fi
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
+
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
