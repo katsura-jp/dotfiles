@@ -6,3 +6,7 @@ link:
 .PHONY: unlink
 unlink:
 	bash ./scripts/unlink.sh
+
+.PHONY: download_fonts
+download_fonts:
+	bash ./scripts/download_fonts.sh
