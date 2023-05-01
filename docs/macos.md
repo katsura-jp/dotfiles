@@ -77,4 +77,8 @@ brew install google-cloud-sdk
 # gcloud components update # if you already installed
 gcloud components install kubectl
 brew install --ignore-dependencies kubectx
+
+# GitHub CLI
+brew install gh
+gh auth login
 ```
