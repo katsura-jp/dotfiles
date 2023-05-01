@@ -1,4 +1,4 @@
-# macOSの初期設定
+# Setup for macOS
 ```
 # install xcode
 xcode-select --install > /dev/null

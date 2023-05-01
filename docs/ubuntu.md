@@ -1,4 +1,4 @@
-# Ubuntuの初期設定
+# Setup for Ubuntu
 ```
 # Install basic softwares
 sudo apt update
@@ -88,7 +88,3 @@ sudo snap install kubectl --classic
 sudo snap install kubectx --classic
 ```
 
-# setup
-```
-sudo make download_fonts
-```
