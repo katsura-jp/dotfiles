@@ -179,3 +179,7 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
+if type "lazygit" > /dev/null 2>&1; then
+  alias lg="lazygit"
+fi
