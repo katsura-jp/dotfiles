@@ -95,5 +95,19 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && sudo apt update \
 && sudo apt install gh -y
 gh auth login
+# lazygit
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit /usr/local/bin
+# tig
+git clone https://github.com/jonas/tig.git
+make prefix=/usr/local
+sudo make install prefix=/usr/local
+rm -rf tig
 ```
 
+## Reference
+- [GitHub CLI](https://github.com/cli/cli#linux--bsd)
+- [lazygit](https://github.com/jesseduffield/lazygit#ubuntu)
+- [tig](https://jonas.github.io/tig/INSTALL.html)

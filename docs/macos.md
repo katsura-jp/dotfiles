@@ -81,4 +81,8 @@ brew install --ignore-dependencies kubectx
 # GitHub CLI
 brew install gh
 gh auth login
+# lazygit
+brew install jesseduffield/lazygit/lazygit
+# tig
+brew install tig
 ```
