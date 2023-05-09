@@ -100,3 +100,4 @@ bind -m vi-command '"\ec": "\C-z\ec\C-z"'
 bind -m vi-insert '"\ec": "\C-z\ec\C-z"'
 
 fi
+

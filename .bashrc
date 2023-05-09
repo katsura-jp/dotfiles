@@ -187,3 +187,15 @@ export CLOUDSDK_PYTHON_SITEPACKAGES=1
 if type "lazygit" > /dev/null 2>&1; then
   alias lg="lazygit"
 fi
+
+if type "batcat" > /dev/null 2>&1; then
+  alias bat="batcat"
+  export FZF_CTRL_T_OPTS='--preview "batcat --color=always --style=header,grid --line-range :100 {}"'
+elif type "bat" > /dev/null 2>&1; then
+  export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=header,grid --line-range :100 {}"'
+fi
+
+if type "rg" > /dev/null 2>&1; then
+  export FZF_CTRL_T_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+fi
+
