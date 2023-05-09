@@ -14,3 +14,4 @@ unlink_dotfile $HOME/.config/powerline-shell
 unlink_dotfile $HOME/.fzf.bash
 unlink_dotfile $HOME/.config/fzf
 unlink_dotfile $HOME/.hammerspoon
+unlink_dotfile $HOME/.tmux.conf

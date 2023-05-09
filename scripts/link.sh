@@ -7,6 +7,7 @@ ln -sf $(realpath ./config/wezterm) $HOME/.config/
 ln -sf $(realpath ./config/powerline-shell) $HOME/.config/
 ln -sf $(realpath ./.fzf.bash) $HOME/
 ln -sf $(realpath ./config/fzf) $HOME/.config/
+ln -sf $(realpath .tmux.conf) $HOME/
 
 if [ "$(uname)" == "Darwin" ]; then
   # mac
