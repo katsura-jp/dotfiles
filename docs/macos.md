@@ -86,3 +86,6 @@ brew install jesseduffield/lazygit/lazygit
 # tig
 brew install tig
 ```
+
+## Other
+`システム環境設定` > `プライバシーとセキュリティ` > `フルディスクアクセス` から `wezterm` をONにする。
