@@ -55,4 +55,6 @@ require("lazy").setup({
   'ray-x/cmp-treesitter',
   -- commentout
   'numToStr/Comment.nvim',
+  -- other
+  'L3MON4D3/LuaSnip',
 })
