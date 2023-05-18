@@ -88,3 +88,30 @@ apps = {
 for i, name in pairs(apps) do
   hs.hotkey.bind({"ctrl", "cmd"}, tostring(i), open(name))
 end
+
+-- move cursor
+function moveCursor(event)
+  local c = event:getKeyCode()
+  local f = event:getFlags()
+  local speed = 15.0
+  if f.ctrl then
+    local pos = hs.mouse.absolutePosition()
+    if c == hs.keycodes.map['up'] then
+      hs.mouse.setAbsolutePosition(hs.geometry.point(pos.x, pos.y - speed))
+    end
+    if c == hs.keycodes.map['down'] then
+      hs.mouse.setAbsolutePosition(hs.geometry.point(pos.x, pos.y + speed))
+    end
+    if c == hs.keycodes.map['left'] then
+      hs.mouse.setAbsolutePosition(hs.geometry.point(pos.x - speed, pos.y))
+    end
+    if c == hs.keycodes.map['right'] then
+      hs.mouse.setAbsolutePosition(hs.geometry.point(pos.x + speed, pos.y))
+    end
+  end
+end
+
+moveCursorEvent = hs.eventtap.new({hs.eventtap.event.types.keyDown}, moveCursor)
+moveCursorEvent:start()
+
+hs.hotkey.bind({'ctrl'}, 'return', function()hs.eventtap.leftClick(hs.mouse.absolutePosition())end)
