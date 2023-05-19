@@ -129,7 +129,10 @@ if [ "$(uname)" == "Darwin" ]; then
     eval $(/opt/homebrew/bin/brew shellenv)
   fi
   if [ -d $(brew --prefix)/share/google-cloud-sdk ]; then
-    source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
+    . "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
+  fi
+  if [ -r $(brew --prefix)/etc/profile.d/bash_completion.sh ]; then
+    . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
   fi
 fi
 
@@ -198,3 +201,4 @@ if type "rg" > /dev/null 2>&1; then
   export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
   export FZF_LEGACY_KEYBINDINGS=0
 fi
+

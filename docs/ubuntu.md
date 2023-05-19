@@ -65,6 +65,8 @@ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --bin
 
+# bash-completion
+sudo apt install bash-completion
 # git-completion
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 
