@@ -178,7 +178,9 @@ if [ -d $HOME/.goenv ]; then
   export PATH="$GOROOT/bin:$PATH"
   export PATH="$PATH:$GOPATH/bin"
 fi
-
+if type "go" > /dev/null 2>&1; then
+  export PATH="$PATH:$(go env GOPATH)/bin"
+fi
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
