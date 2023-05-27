@@ -87,6 +87,10 @@ gh auth login
 brew install jesseduffield/lazygit/lazygit
 # tig
 brew install tig
+
+# SQL
+brew install mysql
+brew install --cask dbeaver-community
 ```
 
 ## Other

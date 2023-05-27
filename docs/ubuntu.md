@@ -11,6 +11,8 @@ sudo apt install -y \
     python3-tk tk-dev libffi-dev \
     dpkg-dev \
     npm
+sudo apt update
+sudo apt install snapd
 
 sudo snap install nvim --classic
 sudo snap install ripgrep --classic
@@ -107,6 +109,10 @@ git clone https://github.com/jonas/tig.git
 make prefix=/usr/local
 sudo make install prefix=/usr/local
 rm -rf tig
+
+# SQL
+sudo snap install mysql --beta
+sudo snap install dbeaver-ce
 ```
 
 ## Reference
