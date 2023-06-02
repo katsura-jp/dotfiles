@@ -209,3 +209,7 @@ if type "kubectl" > /dev/null 2>&1; then
   alias k=kubectl
   complete -F __start_kubectl k
 fi
+
+if type "rye" > /dev/null 2>&1; then
+  source "$HOME/.rye/env"
+fi

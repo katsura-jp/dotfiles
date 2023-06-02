@@ -46,6 +46,7 @@ exec $SHELL -l
 pipx install powerline-shell
 pip install neovim
 pipx install pdm poetry
+curl -sSf https://rye-up.com/get | bash
 
 # npm
 brew install nodebrew
@@ -91,6 +92,14 @@ brew install tig
 # SQL
 brew install mysql
 brew install --cask dbeaver-community
+
+# gRPC
+brew install grpcurl
+brew tap ktr0731/evans
+brew install evans
+
+# kubenetes
+brew install datawire/blackbird/telepresence-arm64
 ```
 
 ## Other

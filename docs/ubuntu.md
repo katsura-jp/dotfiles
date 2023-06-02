@@ -48,6 +48,7 @@ pipx install powerline-shell
 pip install neovim
 pipx install pdm
 pip install poetry pipenv 
+curl -sSf https://rye-up.com/get | bash
 
 # npm
 export NPM_CONFIG_PREFIX=$HOME/.npm-global
