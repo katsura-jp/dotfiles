@@ -210,6 +210,6 @@ if type "kubectl" > /dev/null 2>&1; then
   complete -F __start_kubectl k
 fi
 
-if type "rye" > /dev/null 2>&1; then
-  source "$HOME/.rye/env"
+if [ -f $HOME/.rye/env ]; then
+  . "$HOME/.rye/env"
 fi
