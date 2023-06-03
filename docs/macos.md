@@ -81,6 +81,10 @@ code --install-extension PKief.material-icon-theme
 code --install-extension ritwickdey.LiveServer
 code --install-extension vscode-icons-team.vscode-icons
 code --install-extension wayou.vscode-todo-highlight
+code --install-extension njpwerner.autodocstring
+code --install-extension christian-kohler.path-intellisense
+code --install-extension ms-python.black-formatter
+code --install-extension ms-python.isort
 
 # sync
 code --sync on
@@ -125,7 +129,7 @@ pipx install powerline-shell
 pip install neovim
 pipx install pdm poetry
 curl -sSf https://rye-up.com/get | bash
-pipx install flake8 black mypy pytest
+pipx install flake8 black isort mypy pytest
 ```
 
 
