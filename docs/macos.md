@@ -127,9 +127,18 @@ pipx ensurepath
 exec $SHELL -l
 pipx install powerline-shell
 pip install neovim
-pipx install pdm poetry
+
+# install linter/formatter/tester
+pipx install black
+pipx install isort
+pipx install mypy
+pipx install pytest
+
+# install package manager
+pipx install pdm
+pipx install poetry
+pipx install pipenv
 curl -sSf https://rye-up.com/get | bash
-pipx install flake8 black isort mypy pytest
 ```
 
 
