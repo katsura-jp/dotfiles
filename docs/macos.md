@@ -141,8 +141,6 @@ pipx install pipenv
 curl -sSf https://rye-up.com/get | bash
 ```
 
-
-
 ## Go
 ```
 brew install go gopls
@@ -178,5 +176,33 @@ brew tap ktr0731/evans
 brew install evans
 ```
 
-## Other
+## WezTerm
 `システム環境設定` > `プライバシーとセキュリティ` > `フルディスクアクセス` から `wezterm` をONにする。
+
+## Docker
+https://docs.docker.com/desktop/install/mac-install/
+
+## Tailscale
+https://tailscale.com/download/
+
+## Others
+- RayCast
+- [SketchyBar](https://felixkratz.github.io/SketchyBar/setup)
+- Obsidian
+- Arc Browser
+
+```
+brew install --cask raycast
+
+brew tap FelixKratz/formulae
+brew install sketchybar
+brew tap homebrew/cask-fonts
+brew install --cask font-hack-nerd-font
+
+brew install obsidian
+
+brew install --cask arc
+```
+
+- [Cron](https://cron.com/download/macos)
+
