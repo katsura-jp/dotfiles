@@ -190,6 +190,7 @@ https://tailscale.com/download/
 - [SketchyBar](https://felixkratz.github.io/SketchyBar/setup)
 - Obsidian
 - Arc Browser
+- [Cron](https://cron.com/download/macos)
 
 ```
 brew install --cask raycast
@@ -202,7 +203,8 @@ brew install --cask font-hack-nerd-font
 brew install obsidian
 
 brew install --cask arc
+
+brew install --cask cron
 ```
 
-- [Cron](https://cron.com/download/macos)
 
