@@ -5,6 +5,7 @@ ln -sf $(realpath .bash_profile) $HOME/
 ln -sf $(realpath ./config/nvim) $HOME/.config/
 ln -sf $(realpath ./config/wezterm) $HOME/.config/
 ln -sf $(realpath ./config/powerline-shell) $HOME/.config/
+ln -sf $(realpath ./config/oh-my-posh) $HOME/.config/
 ln -sf $(realpath ./.fzf.bash) $HOME/
 ln -sf $(realpath ./config/fzf) $HOME/.config/
 ln -sf $(realpath .tmux.conf) $HOME/
