@@ -176,6 +176,13 @@ brew tap ktr0731/evans
 brew install evans
 ```
 
+## oh-my-posh
+```
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
+oh-my-posh font install Inconsolata
+wget https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/tokyonight_storm.omp.json -P ~/.config/oh-my-posh/theme/
+```
+
 ## WezTerm
 `システム環境設定` > `プライバシーとセキュリティ` > `フルディスクアクセス` から `wezterm` をONにする。
 
@@ -205,6 +212,7 @@ brew install obsidian
 brew install --cask arc
 
 brew install --cask cron
+
 ```
 
 

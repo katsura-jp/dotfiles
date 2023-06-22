@@ -127,12 +127,13 @@ if [ "$(uname)" == "Darwin" ]; then
   # brew
   if [ -f /opt/homebrew/bin/brew ]; then
     eval $(/opt/homebrew/bin/brew shellenv)
+    export BREW_PREFIX=$(brew --prefix)
   fi
-  if [ -d $(brew --prefix)/share/google-cloud-sdk ]; then
-    . "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
+  if [ -d ${BREW_PREFIX}/share/google-cloud-sdk ]; then
+    . "${BREW_PREFIX}/share/google-cloud-sdk/path.bash.inc"
   fi
-  if [ -r $(brew --prefix)/etc/profile.d/bash_completion.sh ]; then
-    . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+  if [ -r ${BREW_PREFIX}/etc/profile.d/bash_completion.sh ]; then
+    . "${BREW_PREFIX}/etc/profile.d/bash_completion.sh"
   fi
 fi
 
@@ -217,4 +218,8 @@ fi
 export EDITOR=nvim
 if type "direnv" > /dev/null 2>&1; then
   eval "$(direnv hook bash)"
+fi
+
+if type "oh-my-posh" > /dev/null 2>&1; then
+  eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/theme/powerline.omp.json)"
 fi
