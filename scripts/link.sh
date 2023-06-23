@@ -1,23 +1,18 @@
 # symbolic link
 
-ln -sf $(realpath .bashrc) $HOME/
-ln -sf $(realpath .bash_profile) $HOME/
-ln -sf $(realpath ./config/nvim) $HOME/.config/
-ln -sf $(realpath ./config/wezterm) $HOME/.config/
-ln -sf $(realpath ./config/powerline-shell) $HOME/.config/
-ln -sf $(realpath ./config/oh-my-posh) $HOME/.config/
-ln -sf $(realpath ./.fzf.bash) $HOME/
-ln -sf $(realpath ./config/fzf) $HOME/.config/
-ln -sf $(realpath .tmux.conf) $HOME/
+# bashrc
+ln -sf $(realpath settings/bash/.bashrc) $HOME/.bashrc
+ln -sf $(realpath settings/bash/.bash_profile) $HOME/.bash_profile
 
-if [ "$(uname)" == "Darwin" ]; then
-  # mac
-  ln -sf $(realpath ./.hammerspoon) $HOME/.hammerspoon
-elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
-  # windows
-  :
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-  # linux
-  :
-fi
+# .config
+ln -sf $(realpath ./config/bash) $HOME/.config/bash
 
+ln -sf $(realpath ./config/nvim) $HOME/.config/nvim
+ln -sf $(realpath ./config/wezterm) $HOME/.config/wezterm
+ln -sf $(realpath ./config/powerline-shell) $HOME/.config/powerline-shell
+ln -sf $(realpath ./config/oh-my-posh) $HOME/.config/oh-my-posh
+ln -sf $(realpath ./config/fzf) $HOME/.config/fzf
+
+# $HOME
+ln -sf $(realpath ./config/tmux/.tmux.conf) $HOME/.tmux.conf
+ln -sf $(realpath ./config/hammerspoon) $HOME/.hammerspoon

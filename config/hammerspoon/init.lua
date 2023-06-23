@@ -83,6 +83,7 @@ apps = {
   "Visual Studio Code",
   "Arc",
   "slack",
+  "Cron",
 }
 
 for i, name in pairs(apps) do
