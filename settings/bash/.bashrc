@@ -119,11 +119,6 @@ if [ -f $HOME/.config/bash/rust.bash ]; then
   . $HOME/.config/bash/rust.bash
 fi
 
-# # powerline-shell
-# if [ -f $HOME/.config/bash/powerline-shell.bash ]; then
-#   . $HOME/.config/bash/powerline-shell.bash
-# fi
-
 # fzf
 if [ -f $HOME/.config/bash/fzf.bash ]; then
   . $HOME/.config/bash/fzf.bash
@@ -138,7 +133,6 @@ fi
 if [ -f $HOME/.git-completion.bash ]; then
   . $HOME/.git-completion.bash
 fi
-
 
 # lazygit
 if type "lazygit" > /dev/null 2>&1; then
@@ -174,5 +168,6 @@ fi
 
 # oh-my-posh
 if type "oh-my-posh" > /dev/null 2>&1; then
-  eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/theme/powerline.omp.json)"
+  # eval "$(oh-my-posh init bash | sed 's|\[\[ -v MC_SID \]\]|[[ -n "$MC_SID" ]]|')"
+  eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/theme/dracula.omp.json | sed 's|\[\[ -v MC_SID \]\]|[[ -n "$MC_SID" ]]|')"
 fi

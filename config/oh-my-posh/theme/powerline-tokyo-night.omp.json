@@ -1,0 +1,79 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "main-bg": "#1a1b26",
+    "terminal-red": "#f7768e",
+    "pistachio-green": "#9ece6a",
+    "terminal-green": "#73daca",
+    "terminal-yellow": "#e0af68",
+    "terminal-blue": "#7aa2f7",
+    "celeste-blue": "#b4f9f8",
+    "light-sky-blue": "#7dcfff",
+    "terminal-white": "#c0caf5",
+    "white-blue": "#a9b1d6",
+    "blue-bell": "#9aa5ce",
+    "pastal-grey": "#cfc9c2",
+    "terminal-magenta": "#bb9af7",
+    "blue-black": "#565f89",
+    "terminal-black": "#414868",
+    "t-background": "p:main-bg"
+  },
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#FFEE58",
+          "style": "plain",
+          "template": " \uf0e7 ",
+          "type": "root"
+        },
+        {
+          "foreground": "p:terminal-white",
+          "background": "p:terminal-black",
+          "style": "powerline",
+          "template": " {{ .UserName }} ",
+          "type": "session"
+        },
+        {
+          "background": "#91ddff",
+          "foreground": "#100e23",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "style": "full"
+          },
+          "style": "powerline",
+          "template": " {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "background": "#95ffa4",
+          "foreground": "#193549",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " {{ .HEAD }} ",
+          "type": "git"
+        },
+        {
+          "background": "#906cff",
+          "foreground": "#100e23",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+          "type": "python"
+        },
+        {
+          "background": "#ff8080",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " \ue20f ",
+          "type": "exit"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "version": 2
+}
