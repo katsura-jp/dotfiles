@@ -168,6 +168,6 @@ fi
 
 # oh-my-posh
 if type "oh-my-posh" > /dev/null 2>&1; then
-  # eval "$(oh-my-posh init bash | sed 's|\[\[ -v MC_SID \]\]|[[ -n "$MC_SID" ]]|')"
+  unset PROMPT_COMMAND
   eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/theme/dracula.omp.json | sed 's|\[\[ -v MC_SID \]\]|[[ -n "$MC_SID" ]]|')"
 fi
