@@ -155,8 +155,11 @@ if type "rg" > /dev/null 2>&1; then
 fi
 
 # kubectl
-if type "kubectl" > /dev/null 2>&1; then
-  source <(kubectl completion bash)
+if command -v kubectl > /dev/null 2>&1; then
+  if [ ! -f $HOME/.config/bash/kubectl-completion.bash ]; then
+    kubectl completion bash > $HOME/.config/bash/kubectl-completion.bash
+  fi
+  . $HOME/.config/bash/kubectl-completion.bash
   alias k=kubectl
   complete -F __start_kubectl k
 fi
