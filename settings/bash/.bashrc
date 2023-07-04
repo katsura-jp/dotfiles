@@ -164,11 +164,6 @@ if command -v kubectl > /dev/null 2>&1; then
   complete -F __start_kubectl k
 fi
 
-# direnv
-if type "direnv" > /dev/null 2>&1; then
-  eval "$(direnv hook bash)"
-fi
-
 # oh-my-posh
 if type "oh-my-posh" > /dev/null 2>&1; then
   unset PROMPT_COMMAND
