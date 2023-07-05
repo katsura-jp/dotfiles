@@ -7,22 +7,6 @@ xcode-select --install > /dev/null
 eval $(/opt/homebrew/bin/brew shellenv)
 ```
 
-## Bash
-```
-brew install bash
-sudo sh -c 'echo /opt/homebrew/bin/bash >> /etc/shells'
-chsh -s /opt/homebrew/bin/bash
-exec "$SHELL"
-
-# fuzzy finder
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --bin
-# bash-completion
-brew install bash-completion
-# git-completion
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
-```
-
 ## Install standard softwares for development
 ```
 brew install \
@@ -33,6 +17,30 @@ brew install \
     bat
 brew install --cask hammerspoon
 brew install --cask wezterm
+
+brew install bash
+sudo sh -c 'echo /opt/homebrew/bin/bash >> /etc/shells'
+chsh -s /opt/homebrew/bin/bash
+exec "$SHELL"
+```
+
+## Bash
+```
+# fuzzy finder
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --bin
+
+# bash-completion
+brew install bash-completion
+
+# git-completion
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+```
+
+## oh-my-posh
+```
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
+oh-my-posh font install Inconsolata
 ```
 
 ## Dotfiles
@@ -176,12 +184,7 @@ brew tap ktr0731/evans
 brew install evans
 ```
 
-## oh-my-posh
-```
-brew install jandedobbeleer/oh-my-posh/oh-my-posh
-oh-my-posh font install Inconsolata
-wget https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/tokyonight_storm.omp.json -P ~/.config/oh-my-posh/theme/
-```
+
 
 ## WezTerm
 `システム環境設定` > `プライバシーとセキュリティ` > `フルディスクアクセス` から `wezterm` をONにする。
