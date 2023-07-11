@@ -31,17 +31,20 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --bin
 ```
 
-## oh-my-posh
+## oh-my-posh & font
 ```
 curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
+export PATH="$PATH:$HOME/.local/bin"
+
 oh-my-posh font install Inconsolata
+
+wget https://github.com/adobe-fonts/source-han-code-jp/releases/download/2.012R/SourceHanCodeJP.ttc -P ~/.local/share/fonts/
 ```
 
 ## Dotfiles
 ```
 git clone https://github.com/katsura-jp/dotfiles.git
 cd dotfiles
-make download_fonts
 make link
 ```
 

@@ -99,9 +99,12 @@ export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
 # --------------------------------------------------
 
-# macOS settings
 if [ "$(uname)" == "Darwin" ]; then
+  # macOS settings
   . $HOME/.config/bash/macos.bash
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  # Linux settings
+  . $HOME/.config/bash/linux.bash
 fi
 
 # python
