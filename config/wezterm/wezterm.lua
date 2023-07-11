@@ -104,6 +104,7 @@ return {
     font = wezterm.font_with_fallback {
         'Inconsolata',
         'JetBrains Mono',
+        'SourceHanCodeJP',
     },
     font_size = 24.0,
     color_scheme = "tokyonight",

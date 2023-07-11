@@ -18,3 +18,5 @@ fonts=(
 for font in ${fonts[@]}; do
     wget https://github.com/googlefonts/Inconsolata/raw/main/fonts/ttf/$font -P $font_dir
 done
+
+wget https://github.com/adobe-fonts/source-han-code-jp/releases/download/2.012R/SourceHanCodeJP.ttc -P $font_dir
