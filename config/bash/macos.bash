@@ -11,5 +11,8 @@ if [ -f /opt/homebrew/bin/brew ]; then
         . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
     fi
 
+    if [ -d $(brew --prefix)/opt/coreutils/libexec/gnubin ]; then
+        export PATH=$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH
+    fi
 fi
 
