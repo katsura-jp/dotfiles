@@ -102,11 +102,11 @@ return {
         font_size = 20.0,
     },
     font = wezterm.font_with_fallback {
+        'Source Han Code JP',
         'Inconsolata',
         'JetBrains Mono',
-        'SourceHanCodeJP',
     },
-    font_size = 24.0,
+    font_size = 18.0,
     color_scheme = "tokyonight",
     audible_bell = "Disabled",
     use_fancy_tab_bar = true,
