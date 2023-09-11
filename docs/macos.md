@@ -43,6 +43,11 @@ brew install jandedobbeleer/oh-my-posh/oh-my-posh
 oh-my-posh font install Inconsolata
 ```
 
+## asdf
+```
+brew install asdf
+```
+
 ## Dotfiles
 ```
 git clone https://github.com/katsura-jp/dotfiles.git
@@ -169,6 +174,8 @@ brew install google-cloud-sdk
 gcloud components install kubectl
 brew install --ignore-dependencies kubectx
 brew install datawire/blackbird/telepresence-arm64
+
+brew install kustomize
 ```
 
 ## SQL
@@ -216,6 +223,8 @@ brew install --cask arc
 
 brew install --cask cron
 
+brew install ttyrec
+brew install ttygif
 ```
 
 

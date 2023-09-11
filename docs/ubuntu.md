@@ -41,6 +41,11 @@ oh-my-posh font install Inconsolata
 wget https://github.com/adobe-fonts/source-han-code-jp/releases/download/2.012R/SourceHanCodeJP.ttc -P ~/.local/share/fonts/
 ```
 
+## asdf
+```
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
+```
+
 ## Dotfiles
 ```
 git clone https://github.com/katsura-jp/dotfiles.git
@@ -178,6 +183,11 @@ sudo snap install dbeaver-ce
 
 ## Tailscale
 ```
+```
+
+## ttyrec&ttygif
+```
+sudo apt install ttyrec ttygif
 ```
 
 ## (Optional) Other
