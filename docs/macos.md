@@ -43,7 +43,7 @@ brew install jandedobbeleer/oh-my-posh/oh-my-posh
 oh-my-posh font install Inconsolata
 ```
 
-## asdf
+## [asdf](https://asdf-vm.com/guide/getting-started.html)
 ```
 brew install asdf
 ```
@@ -123,15 +123,12 @@ brew install tig
 
 ## Python
 ```
-# pyenv
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-git clone https://github.com/pyenv/pyenv-update.git ~/.pyenv/plugins/pyenv-update
-exec "$SHELL"
+# asdf
+asdf plugin-add python
 
-# set python version
-export PYTHON_VERSION='3.10.10'
-pyenv install $PYTHON_VERSION
-pyenv global $PYTHON_VERSION
+export PYTHON_VERSION='3.10.13'
+asdf install python $PYTHON_VERSION
+asdf global python $PYTHON_VERSION
 
 # install python software
 pip install -U pip setuptools

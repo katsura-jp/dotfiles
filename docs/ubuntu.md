@@ -41,7 +41,7 @@ oh-my-posh font install Inconsolata
 wget https://github.com/adobe-fonts/source-han-code-jp/releases/download/2.012R/SourceHanCodeJP.ttc -P ~/.local/share/fonts/
 ```
 
-## asdf
+## [asdf](https://asdf-vm.com/guide/getting-started.html)
 ```
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
 ```
@@ -104,15 +104,12 @@ rm -rf tig
 
 ## Python
 ```
-# pyenv
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-git clone https://github.com/pyenv/pyenv-update.git ~/.pyenv/plugins/pyenv-update
-exec "$SHELL"
+# asdf
+asdf plugin-add python
 
-# set python version
 export PYTHON_VERSION='3.10.10'
-pyenv install $PYTHON_VERSION
-pyenv global $PYTHON_VERSION
+asdf global python $PYTHON_VERSION
+
 
 # install python software
 pip install -U pip setuptools
@@ -177,8 +174,32 @@ sudo snap install dbeaver-ce
 ```
 ```
 
-## Docker
+## [Docker](https://docs.docker.com/engine/install/ubuntu/) & [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 ```
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# NVIDIA Container Toolkit
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list \
+  && \
+    sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
 ```
 
 ## Tailscale
