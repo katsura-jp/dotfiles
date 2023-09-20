@@ -6,12 +6,17 @@ function toggleIME(event)
     local f = event:getFlags()
     if c == hs.keycodes.map['space'] then
         if f.ctrl then
-            if hs.keycodes.currentMethod() == 'Romaji' then
-                hs.keycodes.setMethod('Hiragana')
-                hs.alert.show("かな", hs.styledtext, hs.screen.mainScreen(), 0.2)
+            if f.shift then
+                hs.keycodes.setMethod('2-Set Korean')
+                hs.alert.show("한글", hs.styledtext, hs.screen.mainScreen(), 0.2)
             else
-                hs.keycodes.setMethod('Romaji')
-                hs.alert.show("ABC", hs.styledtext, hs.screen.mainScreen(), 0.2)
+                if hs.keycodes.currentMethod() == 'Romaji' then
+                    hs.keycodes.setMethod('Hiragana')
+                    hs.alert.show("かな", hs.styledtext, hs.screen.mainScreen(), 0.2)
+                else
+                    hs.keycodes.setMethod('Romaji')
+                    hs.alert.show("ABC", hs.styledtext, hs.screen.mainScreen(), 0.2)
+                end
             end
         end
     end
