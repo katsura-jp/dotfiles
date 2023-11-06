@@ -116,7 +116,6 @@ pip install -U pip setuptools
 pip install -U pipx
 pipx ensurepath
 exec $SHELL -l
-pipx install powerline-shell
 pip install neovim
 
 # install linter/formatter/tester
