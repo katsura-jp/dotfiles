@@ -3,6 +3,8 @@ vim.scriptencoding = 'UTF-8'
 vim.o.encoding = 'UTF-8'
 -- vim.o.fileencoding = 'UTF-8'
 
+-- termguicolors for nvim-notify
+vim.opt.termguicolors = true
 -- colorscheme
 vim.cmd.colorscheme "tokyonight"
 -- charactor size
