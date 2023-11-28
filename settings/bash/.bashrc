@@ -172,3 +172,10 @@ if command -v oh-my-posh > /dev/null 2>&1; then
   unset PROMPT_COMMAND
   eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/theme/dracula.omp.json | sed 's|\[\[ -v MC_SID \]\]|[[ -n "$MC_SID" ]]|')"
 fi
+
+# npm
+if command -v nodebrew > /dev/null 2>&1; then
+  . $HOME/.config/bash/nodebrew.bash
+fi
+
+[ -f ~/.inshellisense/key-bindings.bash ] && source ~/.inshellisense/key-bindings.bash
