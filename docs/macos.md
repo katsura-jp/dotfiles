@@ -188,7 +188,14 @@ brew tap ktr0731/evans
 brew install evans
 ```
 
+## [inshellisense](https://github.com/microsoft/inshellisense)
+```
+brew install fig
 
+npm install -g @microsoft/inshellisense
+inshellisense --shell bash
+inshellisense bind
+```
 
 ## WezTerm
 `システム環境設定` > `プライバシーとセキュリティ` > `フルディスクアクセス` から `wezterm` をONにする。
@@ -200,25 +207,20 @@ https://docs.docker.com/desktop/install/mac-install/
 https://tailscale.com/download/
 
 ## Others
-- RayCast
-- [SketchyBar](https://felixkratz.github.io/SketchyBar/setup)
 - Obsidian
 - Arc Browser
 - [Cron](https://cron.com/download/macos)
+- [Stats](https://github.com/exelban/stats)
 
 ```
-brew install --cask raycast
-
 brew tap FelixKratz/formulae
-brew install sketchybar
 brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
 
 brew install obsidian
-
 brew install --cask arc
-
 brew install --cask cron
+brew install stats
 
 brew install ttyrec
 brew install ttygif
