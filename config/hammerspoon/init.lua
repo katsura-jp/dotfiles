@@ -86,7 +86,7 @@ end
 apps = {
   "wezterm",
   "Visual Studio Code",
-  "Arc",
+  "Google Chrome",
   "slack",
   "Cron",
 }
