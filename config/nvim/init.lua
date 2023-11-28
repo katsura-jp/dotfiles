@@ -1,9 +1,8 @@
+vim.opt.termguicolors = true
+
 require 'plugins'
 require 'config'
 require 'keymap'
-
--- colorscheme
-vim.cmd.colorscheme "tokyonight"
 
 local has = function(x) return vim.fn.has(x) == 1 end
 local is_mac = has "macunix"
