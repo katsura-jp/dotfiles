@@ -177,5 +177,3 @@ fi
 if command -v nodebrew > /dev/null 2>&1; then
   . $HOME/.config/bash/nodebrew.bash
 fi
-
-[ -f ~/.inshellisense/key-bindings.bash ] && source ~/.inshellisense/key-bindings.bash
