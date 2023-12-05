@@ -43,7 +43,7 @@ wget https://github.com/adobe-fonts/source-han-code-jp/releases/download/2.012R/
 
 ## [asdf](https://asdf-vm.com/guide/getting-started.html)
 ```
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
 ```
 
 ## Dotfiles
@@ -108,6 +108,7 @@ rm -rf tig
 asdf plugin-add python
 
 export PYTHON_VERSION='3.10.10'
+asdf install python $PYTHON_VERSION
 asdf global python $PYTHON_VERSION
 
 
