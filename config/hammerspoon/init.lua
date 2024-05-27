@@ -7,8 +7,13 @@ function toggleIME(event)
     if c == hs.keycodes.map['space'] then
         if f.ctrl then
             if f.shift then
-                hs.keycodes.setMethod('2-Set Korean')
-                hs.alert.show("한글", hs.styledtext, hs.screen.mainScreen(), 0.2)
+                if hs.keycodes.currentMethod() == '2-Set Korean' then
+                    hs.keycodes.setMethod('Hiragana')
+                    hs.alert.show("かな", hs.styledtext, hs.screen.mainScreen(), 0.2)
+                else
+                    hs.keycodes.setMethod('2-Set Korean')
+                    hs.alert.show("한글", hs.styledtext, hs.screen.mainScreen(), 0.2)
+                end
             else
                 if hs.keycodes.currentMethod() == 'Romaji' then
                     hs.keycodes.setMethod('Hiragana')
@@ -88,7 +93,7 @@ apps = {
   "Visual Studio Code",
   "Google Chrome",
   "slack",
-  "Cron",
+  "Notion Calendar",
 }
 
 for i, name in pairs(apps) do
