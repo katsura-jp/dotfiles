@@ -80,6 +80,11 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Environment variables
+if [ -f ~/.bashenv ]; then
+    . ~/.bashenv
+fi
+
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
