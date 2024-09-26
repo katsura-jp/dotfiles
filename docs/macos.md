@@ -217,6 +217,8 @@ brew tap FelixKratz/formulae
 brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
 
+brew install helm
+
 brew install obsidian
 brew install --cask arc
 brew install --cask cron
