@@ -5,3 +5,4 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 if command -v npm &> /dev/null; then
   export PATH=$(npm prefix --location=global)/bin:$PATH
 fi
+

@@ -1,8 +1,14 @@
-require("notify").setup({
-  background_colour = "#000000",
-})
+local status, notify = pcall(require, "notify")
+if status then
+  notify.setup({
+    background_colour = "#000000",
+  })
+end
 
-require("noice").setup({
+local status, noice = pcall(require, "noice")
+if not status then return end
+
+noice.setup({
   messages = {
     view = "mini",
     view_error = "mini",

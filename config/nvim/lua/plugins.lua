@@ -26,7 +26,7 @@ require("lazy").setup({
     "folke/noice.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "ls-devs/nvim-notify",
+      "rcarriga/nvim-notify",
     }
   },
   -- filer

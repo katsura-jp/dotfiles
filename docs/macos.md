@@ -149,7 +149,11 @@ uv tool install pytest
 ## oh-my-zsh
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
+## stership
+```
+curl -sS https://starship.rs/install.sh | sh
 ```
 
 ## Go
