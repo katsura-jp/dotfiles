@@ -17,18 +17,20 @@ brew install \
     bat
 brew install --cask hammerspoon
 brew install --cask wezterm
+```
 
-brew install bash
-sudo sh -c 'echo /opt/homebrew/bin/bash >> /etc/shells'
-chsh -s /opt/homebrew/bin/bash
-exec "$SHELL"
+## fuzzy finder
+```
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --bin
 ```
 
 ## Bash
 ```
-# fuzzy finder
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --bin
+brew install bash
+sudo sh -c 'echo /opt/homebrew/bin/bash >> /etc/shells'
+chsh -s /opt/homebrew/bin/bash
+exec "$SHELL"
 
 # bash-completion
 brew install bash-completion
@@ -37,15 +39,37 @@ brew install bash-completion
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 ```
 
+## Zsh
+```
+echo >> $HOME/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+touch $HOME/.zshrc
+
+# bash-completion
+brew install zsh-completion
+
+# git-completion
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh -o ~/.git-completion.zsh
+```
+
+
 ## oh-my-posh
 ```
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 oh-my-posh font install Inconsolata
+oh-my-posh font install monaspace
 ```
 
 ## [asdf](https://asdf-vm.com/guide/getting-started.html)
 ```
 brew install asdf
+
+echo 'export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"' >> $HOME/.zshrc
+
+# zsh
+mkdir -p "${ASDF_DATA_DIR:-$HOME/.asdf}/completions"
+asdf completion zsh > "${ASDF_DATA_DIR:-$HOME/.asdf}/completions/_asdf"
+
 ```
 
 ## Dotfiles
@@ -70,39 +94,6 @@ brew install neovim
 nvim
 ```
 
-## Visual Studio Code
-```
-brew install --cask visual-studio-code
-
-# install extentions
-code --install-extension enkia.tokyo-night
-code --install-extension asvetliakov.vscode-neovim
-code --install-extension ms-python.python
-code --install-extension golang.go
-code --install-extension GitHub.copilot
-code --install-extension eamodio.gitlens
-code --install-extension Gruntfuggly.todo-tree
-code --install-extension jeff-hykin.better-dockerfile-syntax
-code --install-extension ms-azuretools.vscode-docker
-code --install-extension MS-CEINTL.vscode-language-pack-ja
-code --install-extension ms-vscode-remote.remote-ssh
-code --install-extension ms-vscode-remote.remote-containers
-code --install-extension ms-vscode.makefile-tools
-code --install-extension ms-vsliveshare.vsliveshare
-code --install-extension oderwat.indent-rainbow
-code --install-extension PKief.material-icon-theme
-code --install-extension ritwickdey.LiveServer
-code --install-extension vscode-icons-team.vscode-icons
-code --install-extension wayou.vscode-todo-highlight
-code --install-extension njpwerner.autodocstring
-code --install-extension christian-kohler.path-intellisense
-code --install-extension ms-python.black-formatter
-code --install-extension ms-python.isort
-
-# sync
-code --sync on
-```
-
 ## Git
 ```
 git config --global user.name '<name>'
@@ -124,11 +115,20 @@ brew install tig
 ## Python
 ```
 # asdf
-asdf plugin-add python
-
-export PYTHON_VERSION='3.10.13'
+asdf plugin add python
+asdf list all python
+export PYTHON_VERSION='3.13.11'
 asdf install python $PYTHON_VERSION
-asdf global python $PYTHON_VERSION
+asdf set -u python $PYTHON_VERSION
+
+# install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source $HOME/.local/bin/env
+
+# install python 3.13
+uv python list
+uv python install 3.13
+uv python pin 3.13 --global
 
 # install python software
 pip install -U pip setuptools
@@ -139,16 +139,17 @@ pipx install powerline-shell
 pip install neovim
 
 # install linter/formatter/tester
-pipx install black
-pipx install isort
-pipx install mypy
-pipx install pytest
+uv tool install ruff
+uv tool install black
+uv tool install isort
+uv tool install mypy
+uv tool install pytest
+```
 
-# install package manager
-pipx install pdm
-pipx install poetry
-pipx install pipenv
-curl -sSf https://rye-up.com/get | bash
+## oh-my-zsh
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 ```
 
 ## Go

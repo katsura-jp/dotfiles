@@ -16,3 +16,5 @@ ln -sf $(realpath ./config/fzf) $HOME/.config/fzf
 # $HOME
 ln -sf $(realpath ./config/tmux/.tmux.conf) $HOME/.tmux.conf
 ln -sf $(realpath ./config/hammerspoon) $HOME/.hammerspoon
+
+ln -sf $(realpath ./config/oh-my-zsh/custom/themes/nord.zsh-theme) $HOME/.oh-my-zsh/custom/themes/nord.zsh-theme
