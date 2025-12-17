@@ -18,3 +18,4 @@ ln -sf $(realpath ./config/tmux/.tmux.conf) $HOME/.tmux.conf
 ln -sf $(realpath ./config/hammerspoon) $HOME/.hammerspoon
 
 ln -sf $(realpath ./config/oh-my-zsh/custom/themes/nord.zsh-theme) $HOME/.oh-my-zsh/custom/themes/nord.zsh-theme
+ln -sf $(realpath ./config/starship/starship.toml) $HOME/.config/starship.toml
