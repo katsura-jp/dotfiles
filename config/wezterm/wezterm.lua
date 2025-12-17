@@ -98,10 +98,11 @@ end)
 
 return {
     window_frame = {
-        font = wezterm.font { family = 'Inconsolata', weight = 'Bold' },
+        font = wezterm.font { family = 'Moralerspace Neon', weight = 'Bold' },
         font_size = 20.0,
     },
     font = wezterm.font_with_fallback {
+        'Moralerspace Neon',
         'Source Han Code JP',
         'Inconsolata',
         'JetBrains Mono',

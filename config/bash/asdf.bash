@@ -1,7 +1,7 @@
 if [ "$(uname)" == "Darwin" ]; then
     . $(brew --prefix asdf)/libexec/asdf.sh
-    . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+    . $(brew --prefix asdf)/etc/bash_completion.d/asdf
 else
     . "$HOME/.asdf/asdf.sh"
-    . "$HOME/.asdf/completions/asdf.bash"
+    . "$HOME/.asdf/completions/asdf"
 fi
