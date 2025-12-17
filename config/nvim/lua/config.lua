@@ -7,9 +7,9 @@ vim.opt.termguicolors = true
 -- colorscheme
 vim.cmd.colorscheme "tokyonight"
 -- charactor size
-vim.o.ambiwidth = single
+vim.o.ambiwidth = 'single'
 -- mute
-vim.o.belloff = all
+vim.o.belloff = 'all'
 -- tab
 vim.o.expandtab = true
 vim.o.tabstop = 2
