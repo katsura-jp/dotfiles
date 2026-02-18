@@ -22,13 +22,13 @@ require("lazy").setup({
   -- colorscheme
   "folke/tokyonight.nvim",
   -- rich command line
-  {
-    "folke/noice.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    }
-  },
+  -- {
+  --   "folke/noice.nvim",
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "rcarriga/nvim-notify",
+  --   }
+  -- },
   -- filer
   {
     "nvim-telescope/telescope.nvim",

@@ -1,0 +1,5 @@
+[settings]
+# Use .tool-versions for compatibility with asdf
+legacy_version_file = true
+# Auto-install missing tools when entering a directory
+auto_install = true

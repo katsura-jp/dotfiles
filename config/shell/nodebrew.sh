@@ -1,4 +1,5 @@
-# nodebrew
+# nodebrew (bash/zsh shared)
+
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # npm global packages

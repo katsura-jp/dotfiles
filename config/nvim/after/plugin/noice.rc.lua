@@ -1,7 +1,6 @@
 local status, notify = pcall(require, "notify")
 if status then
   notify.setup({
-    background_colour = "#000000",
   })
 end
 
@@ -9,12 +8,25 @@ local status, noice = pcall(require, "noice")
 if not status then return end
 
 noice.setup({
+  cmdline = {
+    enabled = true,
+    view = "cmdline",
+  },
   messages = {
+    enabled = true,
     view = "mini",
     view_error = "mini",
     view_warn = "mini",
     view_history = "mini",
-    view_search = "mini",
+  },
+  routes = {
+    {
+      filter = {
+        event = "msg_show",
+        kind = "search_count",
+      },
+      opts = { skip = true },
+    },
   },
   lsp = {
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -26,8 +38,8 @@ noice.setup({
   },
   -- you can enable a preset for easier configuration
   presets = {
-    bottom_search = true, -- use a classic bottom cmdline for search
-    command_palette = true, -- position the cmdline and popupmenu together
+    bottom_search = false, -- use a classic bottom cmdline for search
+    command_palette = false, -- position the cmdline and popupmenu together
     long_message_to_split = true, -- long messages will be sent to a split
     inc_rename = false, -- enables an input dialog for inc-rename.nvim
     lsp_doc_border = false, -- add a border to hover docs and signature help

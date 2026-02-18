@@ -108,6 +108,7 @@ return {
         'JetBrains Mono',
     },
     font_size = 18.0,
+    line_height = 1.2,
     color_scheme = "tokyonight",
     audible_bell = "Disabled",
     use_fancy_tab_bar = true,
@@ -155,6 +156,8 @@ return {
             mods = 'CTRL',
             action = wezterm.action.SpawnTab 'DefaultDomain'
         },
+        -- Shift+Enter sends ESC + Enter (for terminal apps that need it)
+        { key = 'Enter', mods = 'SHIFT', action = wezterm.action { SendString = "\x1b\r" } },
         { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollByLine(-1) },
         { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollByLine(1) },
         { key = 'u', mods = 'CTRL', action = wezterm.action.EmitEvent 'toggle-opacity' },

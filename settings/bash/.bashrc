@@ -12,9 +12,6 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# language
-export LANG=en_US.UTF-8
-
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
@@ -26,12 +23,30 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# --------------------------------------------------
+# Shared settings (bash/zsh common)
+# --------------------------------------------------
+
+# OS-specific shared settings
 if [ "$(uname)" == "Darwin" ]; then
-  # macOS settings
-  . $HOME/.config/bash/macos.bash
+  . $HOME/.config/shell/macos.sh
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-  # Linux settings
-  . $HOME/.config/bash/linux.bash
+  . $HOME/.config/shell/linux.sh
+fi
+
+# Common environment variables
+. $HOME/.config/shell/env.sh
+
+# Common aliases
+. $HOME/.config/shell/aliases.sh
+
+# --------------------------------------------------
+# Bash-specific settings
+# --------------------------------------------------
+
+# OS-specific bash settings
+if [ "$(uname)" == "Darwin" ]; then
+  . $HOME/.config/bash/macos.bash
 fi
 
 # prompt
@@ -63,23 +78,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if command -v dircolors > /dev/null 2>&1; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Environment variables
 if [ -f ~/.bashenv ]; then
     . ~/.bashenv
@@ -104,62 +102,42 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-export PATH="$PATH:$HOME/.local/bin"
-
-export EDITOR=nvim
-export CLOUDSDK_PYTHON_SITEPACKAGES=1
-
+# --------------------------------------------------
+# Shared modules (bash/zsh common)
 # --------------------------------------------------
 
 # python
-if [ -f $HOME/.config/bash/python.bash ]; then
-  . $HOME/.config/bash/python.bash
+if [ -f $HOME/.config/shell/python.sh ]; then
+  . $HOME/.config/shell/python.sh
 fi
 
 # Go
-if [ -f $HOME/.config/bash/go.bash ]; then
-  . $HOME/.config/bash/go.bash
+if [ -f $HOME/.config/shell/go.sh ]; then
+  . $HOME/.config/shell/go.sh
 fi
 
 # Rust
-if [ -f $HOME/.config/bash/rust.bash ]; then
-  . $HOME/.config/bash/rust.bash
+if [ -f $HOME/.config/shell/rust.sh ]; then
+  . $HOME/.config/shell/rust.sh
 fi
+
+# Node brew
+if [ -d $HOME/.nodebrew ]; then
+  . $HOME/.config/shell/nodebrew.sh
+fi
+
+# --------------------------------------------------
+# Bash-specific modules
+# --------------------------------------------------
 
 # fzf
 if [ -f $HOME/.config/bash/fzf.bash ]; then
   . $HOME/.config/bash/fzf.bash
 fi
 
-# Node brew
-if [ -d $HOME/.nodebrew ]; then
-  export PATH=$HOME/.nodebrew/current/bin:$PATH
-fi
-
 # Git completion
 if [ -f $HOME/.git-completion.bash ]; then
   . $HOME/.git-completion.bash
-fi
-
-# lazygit
-if command -v lazygit > /dev/null 2>&1; then
-  alias lg="lazygit"
-fi
-
-# bat
-if command -v batcat > /dev/null 2>&1; then
-  alias bat="batcat"
-  export FZF_CTRL_T_OPTS='--preview "batcat --color=always --style=numbers,header,grid --line-range :100 {}"'
-elif type "bat" > /dev/null 2>&1; then
-  export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=numbers,header,grid --line-range :100 {}"'
-fi
-
-# rigrep
-if command -v rg > /dev/null 2>&1; then
-  export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
-  export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-  export FZF_LEGACY_KEYBINDINGS=0
 fi
 
 # kubectl
@@ -172,13 +150,17 @@ if command -v kubectl > /dev/null 2>&1; then
   complete -F __start_kubectl k
 fi
 
-# oh-my-posh
-if command -v oh-my-posh > /dev/null 2>&1; then
-  unset PROMPT_COMMAND
-  eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh/theme/dracula.omp.json | sed 's|\[\[ -v MC_SID \]\]|[[ -n "$MC_SID" ]]|')"
+# zoxide
+if command -v zoxide > /dev/null 2>&1; then
+  eval "$(zoxide init bash)"
 fi
 
-# npm
-if command -v nodebrew > /dev/null 2>&1; then
-  . $HOME/.config/bash/nodebrew.bash
+# mise
+if command -v mise > /dev/null 2>&1; then
+  eval "$(mise activate bash)"
+fi
+
+# starship prompt
+if command -v starship > /dev/null 2>&1; then
+  eval "$(starship init bash)"
 fi
