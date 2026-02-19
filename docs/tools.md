@@ -20,6 +20,15 @@ z foo bar   # "foo" と "bar" 両方を含むディレクトリへ
 zi          # fzf で対話的に選択
 ```
 
+## wd (ディレクトリブックマーク, oh-my-zsh プラグイン)
+
+```bash
+wd add work     # 今いるディレクトリを "work" として登録
+wd work         # "work" にジャンプ
+wd list         # 一覧表示
+wd rm work      # 削除
+```
+
 ## fd (find の置き換え)
 
 ```bash

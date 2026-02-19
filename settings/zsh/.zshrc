@@ -15,6 +15,7 @@ plugins=(
   git
   fzf
   fzf-tab
+  wd
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -126,8 +127,10 @@ fi
 
 # gcloud (zsh-specific)
 if [ "$(uname)" = "Darwin" ] && [ -f /opt/homebrew/bin/brew ]; then
-  if [ -d $(brew --prefix)/share/google-cloud-sdk ]; then
-    . "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-    . "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+  _brew_prefix="$(brew --prefix)"
+  if [ -d "$_brew_prefix/share/google-cloud-sdk" ]; then
+    . "$_brew_prefix/share/google-cloud-sdk/path.zsh.inc"
+    . "$_brew_prefix/share/google-cloud-sdk/completion.zsh.inc"
   fi
+  unset _brew_prefix
 fi
