@@ -52,6 +52,9 @@ zstyle ':fzf-tab:complete:*:*' fzf-preview \
 # fzf-tab: press '/' to enter directory (continuous completion)
 zstyle ':fzf-tab:*' continuous-trigger 'right'
 
+zstyle ':completion:*:*:ssh:*' hosts \
+  $(grep '^Host ' ~/.ssh/config | awk '{print $2}')
+
 # --------------------------------------------------
 # Shared modules (bash/zsh common)
 # --------------------------------------------------
