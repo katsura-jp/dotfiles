@@ -151,7 +151,7 @@ brew install evans
 
 ```bash
 brew install --cask hammerspoon
-brew install --cask wezterm
+brew install --cask wezterm@nightly
 brew install stats
 ```
 

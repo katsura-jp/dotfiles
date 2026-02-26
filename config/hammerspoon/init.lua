@@ -1,46 +1,44 @@
 hs.window.animationDuration = 0
 
--- key bind
-function toggleIME(event)
-    local c = event:getKeyCode()
-    local f = event:getFlags()
-    if c == hs.keycodes.map['space'] then
-        if f.ctrl then
-            if f.shift then
-                if hs.keycodes.currentMethod() == '2-Set Korean' then
-                    hs.keycodes.setMethod('Hiragana')
-                    hs.alert.show("かな", hs.styledtext, hs.screen.mainScreen(), 0.2)
-                else
-                    hs.keycodes.setMethod('2-Set Korean')
-                    hs.alert.show("한글", hs.styledtext, hs.screen.mainScreen(), 0.2)
-                end
-            else
-                if hs.keycodes.currentMethod() == 'Romaji' then
-                    hs.keycodes.setMethod('Hiragana')
-                    hs.alert.show("かな", hs.styledtext, hs.screen.mainScreen(), 0.2)
-                else
-                    hs.keycodes.setMethod('Romaji')
-                    hs.alert.show("ABC", hs.styledtext, hs.screen.mainScreen(), 0.2)
-                end
-            end
-        end
-    end
+-- IME switching
+-- Use currentSourceID() for detection (currentLayout() always returns "ABC" even in Hiragana mode)
+local function isEnglish()
+    return hs.keycodes.currentSourceID() == "com.apple.keylayout.ABC"
 end
 
-function esc2eng(event)
-    local c = event:getKeyCode()
-    if c == hs.keycodes.map['escape'] then
-        if hs.keycodes.currentMethod() ~= 'Romaji' then
-            hs.keycodes.setMethod('Romaji')
-            hs.alert.show("ABC", hs.styledtext, hs.screen.mainScreen(), 0.2)
-        end
-    end
+local function switchToEnglish()
+    hs.keycodes.setLayout("ABC")
+    hs.alert.show("ABC", hs.styledtext, hs.screen.mainScreen(), 0.2)
 end
 
-eikana = hs.eventtap.new({hs.eventtap.event.types.keyUp}, toggleIME)
-eikana:start()
+local function switchToMethod(method, alertText)
+    hs.keycodes.setMethod(method)
+    hs.alert.show(alertText, hs.styledtext, hs.screen.mainScreen(), 0.2)
+end
 
-escape2english = hs.eventtap.new({hs.eventtap.event.types.keyUp}, esc2eng)
+hs.hotkey.bind({"ctrl"}, "space", function()
+    if isEnglish() then
+        switchToMethod('Hiragana', "かな")
+    else
+        switchToEnglish()
+    end
+end)
+
+hs.hotkey.bind({"ctrl", "shift"}, "space", function()
+    if hs.keycodes.currentMethod() == '2-Set Korean' then
+        switchToMethod('Hiragana', "かな")
+    else
+        switchToMethod('2-Set Korean', "한글")
+    end
+end)
+
+escape2english = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(event)
+    if event:getKeyCode() == hs.keycodes.map['escape'] then
+        if not isEnglish() then
+            switchToEnglish()
+        end
+    end
+end)
 escape2english:start()
 
 -- window keybind
