@@ -2,15 +2,15 @@
 
 WezTerm nightly ビルドを前提とした設定の使い方ガイド。
 
-## Leader Key / Prefix
+## Prefix Key
 
-WezTerm と tmux でペイン操作のサブキーを統一している。prefix だけが異なるので干渉しない。
+WezTerm と tmux で prefix (`Ctrl+B`) とサブキーを統一している。
 
-`Ctrl+B` は tmux-aware: tmux 内では tmux に渡り、tmux 外では WezTerm の `Ctrl+A` と同じ操作ができる。
+`Ctrl+B` は tmux-aware: tmux 内では tmux に渡り、tmux 外では WezTerm の操作になる。
 
 | | WezTerm | tmux |
 |:--|:--|:--|
-| **Prefix** | `Ctrl+A` / `Ctrl+B`* | `Ctrl+B` |
+| **Prefix** | `Ctrl+B` | `Ctrl+B` |
 | 横分割 | prefix → `\|` | prefix → `\|` |
 | 縦分割 | prefix → `-` | prefix → `-` |
 | ペイン移動 | prefix → `h/j/k/l` or `矢印` | prefix → `h/j/k/l` |
@@ -20,6 +20,7 @@ WezTerm と tmux でペイン操作のサブキーを統一している。prefix
 | 次のタブ | prefix → `n` | prefix → `n` |
 | 前のタブ | prefix → `p` | prefix → `p` |
 | タブ/セッション一覧 | prefix → `w` | prefix → `w` |
+| セッション/workspace 削除 | prefix → `k` | prefix → `k` |
 | ペインを閉じる | prefix → `x` | prefix → `x` |
 
 ## キーバインド一覧
@@ -35,20 +36,20 @@ WezTerm と tmux でペイン操作のサブキーを統一している。prefix
 | `Alt+1` ~ `Alt+9` | タブ1~9に直接移動 |
 | `Alt+0` | 最後のタブに移動 |
 
-### ペイン操作 (Leader key)
+### ペイン操作 (Ctrl+B prefix)
 
 | キー | 操作 |
 |:--|:--|
-| `Ctrl+A` → `\|` | 横に分割 (左右) |
-| `Ctrl+A` → `-` | 縦に分割 (上下) |
-| `Ctrl+A` → `h/j/k/l` or `矢印` | ペイン移動 (左/下/上/右) |
-| `Ctrl+A` → `z` | ペインのズーム切り替え (最大化/元に戻す) |
-| `Ctrl+A` → `x` | ペインを閉じる (確認あり) |
-| `Ctrl+A` → `r` | リサイズモードに入る |
+| `Ctrl+B` → `\|` | 横に分割 (左右) |
+| `Ctrl+B` → `-` | 縦に分割 (上下) |
+| `Ctrl+B` → `h/j/k/l` or `矢印` | ペイン移動 (左/下/右、上は矢印のみ) |
+| `Ctrl+B` → `z` | ペインのズーム切り替え (最大化/元に戻す) |
+| `Ctrl+B` → `x` | ペインを閉じる (確認あり) |
+| `Ctrl+B` → `r` | リサイズモードに入る |
 
 ### リサイズモード
 
-`Ctrl+A` → `r` でリサイズモードに入ると、以下のキーで繰り返しリサイズできる。3秒操作なしか `Esc` で抜ける。
+`Ctrl+B` → `r` でリサイズモードに入ると、以下のキーで繰り返しリサイズできる。3秒操作なしか `Esc` で抜ける。
 
 | キー | 操作 |
 |:--|:--|
@@ -62,10 +63,25 @@ WezTerm と tmux でペイン操作のサブキーを統一している。prefix
 
 | キー | 操作 |
 |:--|:--|
+| `Ctrl+B` → `w` | Workspace/タブ一覧を階層表示 (fuzzy 検索) |
+| `Ctrl+B` → `k` | Workspace を選択して削除 |
+| `Ctrl+B` → `c` | 新しいタブを開く |
+| `Ctrl+B` → `n` / `p` | 次/前のタブに移動 |
 | `Alt+S` | Workspace 一覧を fuzzy 検索で表示・切り替え |
 | `Alt+N` | 新しい Workspace を名前を入力して作成・切り替え |
 
 Workspace はプロジェクト単位でタブ群をグループ化する機能。右のステータスバーに現在の Workspace 名が表示される。
+
+`Ctrl+B` → `w` では tmux 風の階層表示でワークスペースとタブを確認できる:
+```
++ default: 3 tabs (attached)
+  ├─ 0: zsh *
+  ├─ 1: nvim
+  └─ 2: node
++ project-a: 2 tabs
+  ├─ 0: zsh
+  └─ 1: nvim
+```
 
 ### Quick Select
 

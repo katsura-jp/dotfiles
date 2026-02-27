@@ -29,7 +29,7 @@ link_dotfile ./config/git $HOME/.config/git
 link_dotfile ./config/mise $HOME/.config/mise
 
 link_dotfile ./config/nvim $HOME/.config/nvim
-link_dotfile ./config/wezterm/wezterm.lua $HOME/.wezterm.lua
+link_dotfile ./config/wezterm $HOME/.config/wezterm
 link_dotfile ./config/powerline-shell $HOME/.config/powerline-shell
 link_dotfile ./config/oh-my-posh $HOME/.config/oh-my-posh
 link_dotfile ./config/fzf $HOME/.config/fzf

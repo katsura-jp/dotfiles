@@ -22,7 +22,7 @@ unlink_dotfile $HOME/.config/git
 unlink_dotfile $HOME/.config/mise
 
 unlink_dotfile $HOME/.config/nvim
-unlink_dotfile $HOME/.wezterm.lua
+unlink_dotfile $HOME/.config/wezterm
 unlink_dotfile $HOME/.config/powerline-shell
 unlink_dotfile $HOME/.config/oh-my-posh
 unlink_dotfile $HOME/.config/fzf

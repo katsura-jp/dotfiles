@@ -33,12 +33,30 @@ hs.hotkey.bind({ "ctrl", "shift" }, "space", function()
     end
 end)
 
--- Escape: Auto-switch to English
-local escape2english = hs.eventtap.new({ hs.eventtap.event.types.keyDown }, function(event)
-    if event:getKeyCode() == hs.keycodes.map["escape"] then
-        if not isEnglish() then
-            switchToEnglish()
-        end
+-- Escape: Auto-switch to English (key is passed through to apps)
+local escapeToEnglish
+escapeToEnglish = hs.hotkey.new({}, "escape", function()
+    if not isEnglish() then
+        switchToEnglish()
     end
+    escapeToEnglish:disable()
+    hs.eventtap.keyStroke({}, "escape", 0)
+    hs.timer.doAfter(0.15, function()
+        escapeToEnglish:enable()
+    end)
 end)
-escape2english:start()
+escapeToEnglish:enable()
+
+-- Ctrl+B: Auto-switch to English (key is passed through to WezTerm)
+local ctrlbToEnglish
+ctrlbToEnglish = hs.hotkey.new({ "ctrl" }, "b", function()
+    if not isEnglish() then
+        switchToEnglish()
+    end
+    ctrlbToEnglish:disable()
+    hs.eventtap.keyStroke({ "ctrl" }, "b", 0)
+    hs.timer.doAfter(0.15, function()
+        ctrlbToEnglish:enable()
+    end)
+end)
+ctrlbToEnglish:enable()
