@@ -2,6 +2,19 @@
 
 このリポジトリで導入しているCLIツールの使い方まとめ。
 
+## herdr (ターミナルマルチプレクサ、標準)
+
+tmux / WezTerm のマルチプレクサ機能に代わる標準ツール。詳細は [herdr.md](herdr.md)。
+
+```bash
+herdr                        # 永続セッションを起動 or アタッチ
+herdr status                 # server / client の状態確認
+herdr server reload-config   # 設定変更の反映
+herdr agent list             # 動いている AI agent 一覧と状態
+```
+
+Prefix は `Ctrl+B`（WezTerm はバインドせず herdr にパススルー）。prefix → `?` でヘルプ。
+
 ## eza (ls の置き換え)
 
 ```bash

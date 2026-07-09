@@ -33,3 +33,6 @@ unlink_dotfile $HOME/.tmux.conf
 
 unlink_dotfile $HOME/.oh-my-zsh/custom/themes/nord.zsh-theme
 unlink_dotfile $HOME/.config/starship.toml
+
+# herdr
+unlink_dotfile $HOME/.config/herdr/config.toml

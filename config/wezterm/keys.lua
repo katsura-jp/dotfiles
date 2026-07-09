@@ -1,18 +1,8 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
-local workspace = require 'workspace'
 
--- Ctrl+B: passthrough to tmux if running, otherwise execute WezTerm action
-local function if_not_tmux(action)
-  return wezterm.action_callback(function(window, pane)
-    local process = pane:get_foreground_process_name() or ''
-    if process:match('tmux') then
-      window:perform_action(act.SendKey { key = 'b', mods = 'CTRL' }, pane)
-    else
-      window:perform_action(action, pane)
-    end
-  end)
-end
+-- Ctrl+B は WezTerm では奪わず、常にペイン内 (herdr / tmux) に渡す。
+-- ペイン・タブ・workspace 管理は herdr 側 (prefix Ctrl+B) を使う。
 
 local M = {}
 
@@ -75,55 +65,12 @@ M.keys = {
     { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollByLine(-1) },
     { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollByLine(1) },
 
-    -- Ctrl+B: tmux-aware prefix
-    { key = 'b', mods = 'CTRL', action = if_not_tmux(act.ActivateKeyTable {
-        name = 'tmux_compat',
-        one_shot = true,
-        timeout_milliseconds = 1000,
-    })},
-
     -- Misc
     { key = 'Enter', mods = 'SHIFT', action = act { SendString = '\x1b\r' } },
     { key = 'u', mods = 'CTRL', action = act.EmitEvent 'toggle-opacity' },
 }
 
-M.key_tables = {
-    -- Ctrl+B prefix (tmux-compatible key bindings)
-    tmux_compat = {
-        { key = '|', mods = 'SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-        { key = '-', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
-        { key = 'z', action = act.TogglePaneZoomState },
-        { key = 'x', action = act.CloseCurrentPane { confirm = true } },
-        { key = 'h', action = act.ActivatePaneDirection 'Left' },
-        { key = 'j', action = act.ActivatePaneDirection 'Down' },
-        { key = 'k', action = wezterm.action_callback(workspace.kill_workspace_selector) },
-        { key = 'l', action = act.ActivatePaneDirection 'Right' },
-        { key = 'LeftArrow', action = act.ActivatePaneDirection 'Left' },
-        { key = 'DownArrow', action = act.ActivatePaneDirection 'Down' },
-        { key = 'UpArrow', action = act.ActivatePaneDirection 'Up' },
-        { key = 'RightArrow', action = act.ActivatePaneDirection 'Right' },
-        { key = 'c', action = act.SpawnTab 'CurrentPaneDomain' },
-        { key = 'n', action = act.ActivateTabRelative(1) },
-        { key = 'p', action = act.ActivateTabRelative(-1) },
-        { key = 'w', action = wezterm.action_callback(workspace.show_workspace_tabs) },
-        { key = 'r', action = act.ActivateKeyTable {
-            name = 'resize_pane',
-            one_shot = false,
-            timeout_milliseconds = 3000,
-        }},
-    },
-    resize_pane = {
-        { key = 'LeftArrow', action = act.AdjustPaneSize { 'Left', 1 } },
-        { key = 'RightArrow', action = act.AdjustPaneSize { 'Right', 1 } },
-        { key = 'UpArrow', action = act.AdjustPaneSize { 'Up', 1 } },
-        { key = 'DownArrow', action = act.AdjustPaneSize { 'Down', 1 } },
-        { key = 'h', action = act.AdjustPaneSize { 'Left', 1 } },
-        { key = 'l', action = act.AdjustPaneSize { 'Right', 1 } },
-        { key = 'k', action = act.AdjustPaneSize { 'Up', 1 } },
-        { key = 'j', action = act.AdjustPaneSize { 'Down', 1 } },
-        { key = 'Escape', action = 'PopKeyTable' },
-    },
-}
+M.key_tables = {}
 
 M.mouse_bindings = {
     -- Ctrl-click will open the link under the mouse cursor

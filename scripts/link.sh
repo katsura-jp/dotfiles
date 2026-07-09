@@ -44,3 +44,7 @@ if [ -d "$HOME/.oh-my-zsh" ]; then
   link_dotfile ./config/oh-my-zsh/custom/themes/nord.zsh-theme $HOME/.oh-my-zsh/custom/themes/nord.zsh-theme
 fi
 link_dotfile ./config/starship/starship.toml $HOME/.config/starship.toml
+
+# herdr (config.toml のみリンク。~/.config/herdr/ にはソケット・ログが生成される)
+mkdir -p $HOME/.config/herdr
+link_dotfile ./config/herdr/config.toml $HOME/.config/herdr/config.toml

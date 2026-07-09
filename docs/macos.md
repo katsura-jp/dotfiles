@@ -157,6 +157,15 @@ brew install stats
 
 > WezTerm: Go to `System Settings > Privacy & Security > Full Disk Access` and enable `wezterm`.
 
+### herdr (standard terminal multiplexer)
+
+```bash
+brew install herdr
+herdr integration install claude   # Claude Code 連携 hook のインストール
+```
+
+設定は `make link` で `config/herdr/config.toml` がリンクされる。使い方は [herdr.md](herdr.md) を参照。
+
 - [Docker Desktop](https://docs.docker.com/desktop/install/mac-install/)
 - [Tailscale](https://tailscale.com/download/)
 

@@ -1,0 +1,31 @@
+# herdr configuration
+# linked to ~/.config/herdr/config.toml (config.toml のみリンク。
+# ~/.config/herdr/ 配下にはソケット・ログ等のランタイムファイルが生成されるため
+# ディレクトリごとリンクしないこと)
+#
+# 全デフォルト値は `herdr --default-config` で確認できる。
+# 変更後は `herdr server reload-config` で反映。
+
+# 初回起動時の通知オンボーディングは表示しない
+onboarding = false
+
+[theme]
+# zsh テーマ・WezTerm と揃えて nord
+name = "nord"
+
+[keys]
+# tmux / WezTerm と同じ prefix (デフォルトも ctrl+b)
+prefix = "ctrl+b"
+
+[ui]
+# Agent パネルは space (workspace) 単位でグルーピング
+agent_panel_sort = "spaces"
+
+[ui.toast]
+# バックグラウンドの agent 状態変化を macOS 通知で受け取る
+# off / herdr / terminal / system
+delivery = "system"
+
+[session]
+# herdr server 再起動後、Claude Code 等の agent ペインを元の会話セッションに復帰させる
+resume_agents_on_restore = true

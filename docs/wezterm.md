@@ -2,26 +2,13 @@
 
 WezTerm nightly ビルドを前提とした設定の使い方ガイド。
 
-## Prefix Key
+## Prefix Key (`Ctrl+B`) は herdr が使う
 
-WezTerm と tmux で prefix (`Ctrl+B`) とサブキーを統一している。
+**WezTerm は `Ctrl+B` をバインドしない。** `Ctrl+B` は常にペイン内のアプリ（herdr / tmux）に
+そのまま渡り、ペイン分割・タブ・workspace 管理はすべて herdr 側で行う（[herdr.md](herdr.md) 参照）。
 
-`Ctrl+B` は tmux-aware: tmux 内では tmux に渡り、tmux 外では WezTerm の操作になる。
-
-| | WezTerm | tmux |
-|:--|:--|:--|
-| **Prefix** | `Ctrl+B` | `Ctrl+B` |
-| 横分割 | prefix → `\|` | prefix → `\|` |
-| 縦分割 | prefix → `-` | prefix → `-` |
-| ペイン移動 | prefix → `h/j/k/l` or `矢印` | prefix → `h/j/k/l` |
-| ペインズーム | prefix → `z` | prefix → `z` |
-| リサイズ | prefix → `r` → `h/j/k/l` or `矢印`  | prefix → `r` → `h/j/k/l` or `矢印`  |
-| 新しいタブ | prefix → `c` | prefix → `c` |
-| 次のタブ | prefix → `n` | prefix → `n` |
-| 前のタブ | prefix → `p` | prefix → `p` |
-| タブ/セッション一覧 | prefix → `w` | prefix → `w` |
-| セッション/workspace 削除 | prefix → `k` | prefix → `k` |
-| ペインを閉じる | prefix → `x` | prefix → `x` |
+以前あった tmux 互換の prefix key table（分割・ペイン移動・リサイズ等）は herdr 移行に伴い削除した。
+WezTerm はターミナルエミュレータとして描画・フォント・Quick Select 等のみ担当する。
 
 ## キーバインド一覧
 
@@ -36,52 +23,18 @@ WezTerm と tmux で prefix (`Ctrl+B`) とサブキーを統一している。
 | `Alt+1` ~ `Alt+9` | タブ1~9に直接移動 |
 | `Alt+0` | 最後のタブに移動 |
 
-### ペイン操作 (Ctrl+B prefix)
+### ペイン・分割・リサイズ
 
-| キー | 操作 |
-|:--|:--|
-| `Ctrl+B` → `\|` | 横に分割 (左右) |
-| `Ctrl+B` → `-` | 縦に分割 (上下) |
-| `Ctrl+B` → `h/j/k/l` or `矢印` | ペイン移動 (左/下/右、上は矢印のみ) |
-| `Ctrl+B` → `z` | ペインのズーム切り替え (最大化/元に戻す) |
-| `Ctrl+B` → `x` | ペインを閉じる (確認あり) |
-| `Ctrl+B` → `r` | リサイズモードに入る |
-
-### リサイズモード
-
-`Ctrl+B` → `r` でリサイズモードに入ると、以下のキーで繰り返しリサイズできる。3秒操作なしか `Esc` で抜ける。
-
-| キー | 操作 |
-|:--|:--|
-| `←` / `h` | 左に縮小 |
-| `→` / `l` | 右に拡大 |
-| `↑` / `k` | 上に拡大 |
-| `↓` / `j` | 下に縮小 |
-| `Esc` | リサイズモードを終了 |
+WezTerm 側にはバインドなし。herdr の prefix (`Ctrl+B`) で操作する（[herdr.md](herdr.md) 参照）。
 
 ### Workspace
 
+WezTerm workspace はプロジェクト単位のグループ化として残しているが、通常は herdr の workspace を使う。
+
 | キー | 操作 |
 |:--|:--|
-| `Ctrl+B` → `w` | Workspace/タブ一覧を階層表示 (fuzzy 検索) |
-| `Ctrl+B` → `k` | Workspace を選択して削除 |
-| `Ctrl+B` → `c` | 新しいタブを開く |
-| `Ctrl+B` → `n` / `p` | 次/前のタブに移動 |
 | `Alt+S` | Workspace 一覧を fuzzy 検索で表示・切り替え |
 | `Alt+N` | 新しい Workspace を名前を入力して作成・切り替え |
-
-Workspace はプロジェクト単位でタブ群をグループ化する機能。右のステータスバーに現在の Workspace 名が表示される。
-
-`Ctrl+B` → `w` では tmux 風の階層表示でワークスペースとタブを確認できる:
-```
-+ default: 3 tabs (attached)
-  ├─ 0: zsh *
-  ├─ 1: nvim
-  └─ 2: node
-+ project-a: 2 tabs
-  ├─ 0: zsh
-  └─ 1: nvim
-```
 
 ### Quick Select
 
