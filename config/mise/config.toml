@@ -3,3 +3,7 @@
 legacy_version_file = true
 # Auto-install missing tools when entering a directory
 auto_install = true
+
+[tools]
+python = "3.14.6"
+

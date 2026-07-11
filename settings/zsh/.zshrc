@@ -113,10 +113,10 @@ if command -v direnv > /dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
-# asdf
-if [ -f "$HOME/.config/zsh/asdf.zsh" ]; then
-  . "$HOME/.config/zsh/asdf.zsh"
-fi
+# asdf (disabled — migrated to mise)
+# if [ -f "$HOME/.config/zsh/asdf.zsh" ]; then
+#   . "$HOME/.config/zsh/asdf.zsh"
+# fi
 
 # starship prompt
 if command -v starship > /dev/null 2>&1; then
