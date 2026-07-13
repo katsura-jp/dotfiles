@@ -1,24 +1,39 @@
 local config = require("config").ime
 
+-- JIS Eisu/Kana keycodes (postable as events even on US layouts)
+local EISU_KEYCODE = 102
+local KANA_KEYCODE = 104
+
 -- Use currentSourceID() for detection (currentLayout() always returns "ABC" even in Hiragana mode)
 local function isEnglish()
     return hs.keycodes.currentSourceID() == config.englishSourceID
 end
 
 local function switchToEnglish()
-    hs.keycodes.setLayout(config.englishLayout)
+    hs.eventtap.keyStroke({}, EISU_KEYCODE, 0)
     hs.alert.show(config.englishLayout, hs.styledtext, hs.screen.mainScreen(), config.alertDuration)
 end
 
-local function switchToMethod(method)
-    hs.keycodes.setMethod(method.name)
-    hs.alert.show(method.alert, hs.styledtext, hs.screen.mainScreen(), config.alertDuration)
+local function switchToHiragana()
+    hs.eventtap.keyStroke({}, KANA_KEYCODE, 0)
+    hs.alert.show(config.methods.hiragana.alert, hs.styledtext, hs.screen.mainScreen(), config.alertDuration)
+end
+
+-- Korean cannot be reached via Eisu/Kana keys; setMethod() with a retry
+local function switchToKorean()
+    hs.keycodes.setMethod(config.methods.korean.name)
+    hs.alert.show(config.methods.korean.alert, hs.styledtext, hs.screen.mainScreen(), config.alertDuration)
+    hs.timer.doAfter(0.1, function()
+        if hs.keycodes.currentMethod() ~= config.methods.korean.name then
+            hs.keycodes.setMethod(config.methods.korean.name)
+        end
+    end)
 end
 
 -- Ctrl+Space: Toggle English/Hiragana
 hs.hotkey.bind({ "ctrl" }, "space", function()
     if isEnglish() then
-        switchToMethod(config.methods.hiragana)
+        switchToHiragana()
     else
         switchToEnglish()
     end
@@ -27,9 +42,9 @@ end)
 -- Ctrl+Shift+Space: Toggle Hiragana/Korean
 hs.hotkey.bind({ "ctrl", "shift" }, "space", function()
     if hs.keycodes.currentMethod() == config.methods.korean.name then
-        switchToMethod(config.methods.hiragana)
+        switchToHiragana()
     else
-        switchToMethod(config.methods.korean)
+        switchToKorean()
     end
 end)
 
