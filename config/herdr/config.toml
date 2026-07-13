@@ -21,6 +21,10 @@ prefix = "ctrl+b"
 # Agent パネルは space (workspace) 単位でグルーピング
 agent_panel_sort = "spaces"
 
+# ペインボーダー右上の agent ラベル (Claude session 名等) は表示しない
+# (Claude Code の statusline 側で session 名を表示するため二重になる)
+show_agent_labels_on_pane_borders = false
+
 [ui.toast]
 # バックグラウンドの agent 状態変化を macOS 通知で受け取る
 # off / herdr / terminal / system
