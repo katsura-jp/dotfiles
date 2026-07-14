@@ -37,3 +37,9 @@ enabled = true
 [session]
 # herdr server 再起動後、Claude Code 等の agent ペインを元の会話セッションに復帰させる
 resume_agents_on_restore = true
+
+[experimental]
+# prefix モード中だけ macOS の入力ソースを ASCII 系に一時切り替えし、
+# prefix 終了時に元の IME に戻す（macOS のみ・best-effort）。
+# 日本語入力のままでも prefix+<key> が効くようにする (#400)
+switch_ascii_input_source_in_prefix = true
