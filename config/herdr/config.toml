@@ -26,9 +26,13 @@ agent_panel_sort = "spaces"
 show_agent_labels_on_pane_borders = false
 
 [ui.toast]
-# バックグラウンドの agent 状態変化を macOS 通知で受け取る
+# ポップアップ通知は出さない（音のみ受け取る）
 # off / herdr / terminal / system
-delivery = "system"
+delivery = "off"
+
+[ui.sound]
+# agent 状態変化のサウンド通知（ローカルクライアント側で再生）
+enabled = true
 
 [session]
 # herdr server 再起動後、Claude Code 等の agent ペインを元の会話セッションに復帰させる
