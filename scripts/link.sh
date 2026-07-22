@@ -9,6 +9,12 @@ link_dotfile() {
     return 1
   fi
 
+  if [ -f "$dest" ] && [ ! -L "$dest" ]; then
+    local backup="${dest}.bak.$(date +%Y%m%d%H%M%S)"
+    mv "$dest" "$backup"
+    echo "backup: $dest -> $backup"
+  fi
+
   ln -sfn "$src" "$dest"
   echo "linked $dest -> $src"
 }
@@ -36,7 +42,11 @@ link_dotfile ./config/fzf $HOME/.config/fzf
 
 # $HOME
 link_dotfile ./config/tmux/.tmux.conf $HOME/.tmux.conf
-link_dotfile ./config/hammerspoon $HOME/.hammerspoon
+
+# macOS only
+if [ "$(uname)" = "Darwin" ]; then
+  link_dotfile ./config/hammerspoon $HOME/.hammerspoon
+fi
 
 # oh-my-zsh theme (create parent directory if oh-my-zsh is installed)
 if [ -d "$HOME/.oh-my-zsh" ]; then
