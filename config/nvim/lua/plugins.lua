@@ -44,7 +44,8 @@ require("lazy").setup({
   "neovim/nvim-lspconfig",
   "williamboman/mason-lspconfig.nvim",
   -- Linters & Formatters
-  "jose-elias-alvarez/null-ls.nvim",
+  -- (community fork of the deleted jose-elias-alvarez/null-ls.nvim; module name is still "null-ls")
+  "nvimtools/none-ls.nvim",
   -- cmp
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
