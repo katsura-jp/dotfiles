@@ -75,6 +75,10 @@ make setup_zsh_plugins   # fzf-tab, zsh-autosuggestions, zsh-syntax-highlighting
 
 ## 4. Git
 
+> **Note**: Create `~/.gitconfig` first (`touch ~/.gitconfig`). If it does not exist,
+> `git config --global` writes into `~/.config/git/config`, which is a symlink into
+> this (public) repository.
+
 ```bash
 git config --global user.name '<name>'
 git config --global user.email '<email>'
