@@ -125,6 +125,24 @@ if command -v starship > /dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
 
+herdr() {
+  if [ $# -eq 0 ]; then
+    if [ "$(uname)" = "Linux" ]; then
+      command herdr --session "${HOST%%.*}"
+    else
+      command herdr
+    fi
+  elif [ "$1" = "--remote" ] && [ -n "${2:-}" ]; then
+    local _target="${2##*@}"
+    case " $* " in
+      *" --session "*) command herdr "$@" ;;
+      *) command herdr "$@" --session "${_target%%.*}" ;;
+    esac
+  else
+    command herdr "$@"
+  fi
+}
+
 # Local overrides (not in dotfiles repo)
 if [ -f ~/.bashenv ]; then
     . ~/.bashenv
