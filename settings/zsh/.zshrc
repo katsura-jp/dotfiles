@@ -178,3 +178,10 @@ hd() {
   fi
 }
 compdef hd=herdr 2>/dev/null
+
+# リモート (liat 系等の Linux、home が NFS 共有) では ssh 直ログインで herdr を
+# 開いてもホスト専用セッション・ソケットになるようにする。
+# hd --remote が付ける --session <host> と同じ名前に揃う
+if [ "$(uname)" = "Linux" ] && [ -z "$HERDR_SESSION" ]; then
+  export HERDR_SESSION="$(hostname -s)"
+fi

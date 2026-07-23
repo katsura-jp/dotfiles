@@ -17,6 +17,36 @@ name = "nord"
 # tmux / WezTerm と同じ prefix (デフォルトも ctrl+b)
 prefix = "ctrl+b"
 
+# agent 間の移動（複数 Claude 並行運用向け。デフォルトは未割当）
+previous_agent = "prefix+["
+next_agent = "prefix+]"
+focus_agent = "prefix+alt+1..9"
+# 直前ペインとの往復
+last_pane = "prefix+tab"
+
+# hunk: 作業ツリーの changeset レビューを popup で（agent の diff 確認用）
+[[keys.command]]
+key = "prefix+alt+d"
+type = "popup"
+command = "hunk diff --watch"
+width = "90%"
+height = "90%"
+
+# lazygit を popup で
+[[keys.command]]
+key = "prefix+alt+g"
+type = "popup"
+command = "lazygit"
+width = "80%"
+height = "80%"
+
+# herdr-file-viewer プラグイン (git-aware read-only ビューア) をスプリットで開く
+# 要: herdr plugin install smarzban/herdr-file-viewer (レンダラーは glow / delta / bat)
+[[keys.command]]
+key = "prefix+f"
+type = "shell"
+command = "herdr plugin action invoke open-file-viewer --plugin herdr-file-viewer"
+
 [ui]
 # Agent パネルは space (workspace) 単位でグルーピング
 agent_panel_sort = "spaces"
@@ -24,6 +54,14 @@ agent_panel_sort = "spaces"
 # ペインボーダー右上の agent ラベル (Claude session 名等) は表示しない
 # (Claude Code の statusline 側で session 名を表示するため二重になる)
 show_agent_labels_on_pane_borders = false
+
+# タブが1つの workspace ではタブ行を隠す
+hide_tab_bar_when_single_tab = true
+
+# サイドバーの Claude 行にはターミナルタイトル (セッション名等) も表示する
+# (ペインボーダーのラベルを消している代わり)
+[ui.sidebar.agents.rows_by_agent]
+claude = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"]]
 
 [ui.toast]
 # ポップアップ通知は出さない（音のみ受け取る）
@@ -43,3 +81,13 @@ resume_agents_on_restore = true
 # prefix 終了時に元の IME に戻す（macOS のみ・best-effort）。
 # 日本語入力のままでも prefix+<key> が効くようにする (#400)
 switch_ascii_input_source_in_prefix = true
+
+# フォーカス中ペインのカーソル位置を外側ターミナルに公開し、
+# 自前でカーソルを描く TUI (Claude Code 等) でも IME の変換候補ウィンドウを追従させる
+reveal_hidden_cursor_for_cjk_ime = true
+# vim 等で余計なカーソルが見えないよう Claude のみに限定
+cjk_ime_agents = ["claude"]
+
+# サーバー完全再起動をまたいで直近のペイン画面履歴を保存
+# (resume_agents_on_restore が会話の復帰、こちらは画面内容の復元)
+pane_history = true
