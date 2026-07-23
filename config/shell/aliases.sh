@@ -52,6 +52,33 @@ elif command -v rg > /dev/null 2>&1; then
 fi
 export FZF_LEGACY_KEYBINDINGS=0
 
+# kubectl: switch namespace without namespace list permission.
+# `ksn <ns>` sets it directly. `ksn` with no argument reads candidate
+# namespaces from ~/.kube/ns-candidates/<context> (one per line, `#`
+# comments allowed), keeps only the ones `kubectl auth can-i` grants
+# access to, and picks one via fzf. Candidate files are machine-local
+# and never tracked in this repository.
+if command -v kubectl > /dev/null 2>&1; then
+  ksn() {
+    if [ -n "$1" ]; then
+      kubectl config set-context --current --namespace "$1"
+      return
+    fi
+    local ctx candidates ns
+    ctx=$(kubectl config current-context) || return 1
+    candidates="$HOME/.kube/ns-candidates/$ctx"
+    if [ ! -f "$candidates" ]; then
+      echo "ksn: candidate file not found: $candidates" >&2
+      echo "ksn: create it (one namespace per line) or run: ksn <namespace>" >&2
+      return 1
+    fi
+    ns=$(grep -v -e '^#' -e '^[[:space:]]*$' "$candidates" \
+      | xargs -P 10 -I{} sh -c 'kubectl auth can-i get pods -n "$1" > /dev/null 2>&1 && echo "$1"' _ {} \
+      | sort | fzf --prompt="namespace ($ctx)> ") || return 1
+    kubectl config set-context --current --namespace "$ns"
+  }
+fi
+
 # ghq + fzf
 if command -v ghq > /dev/null 2>&1 && command -v fzf > /dev/null 2>&1; then
   ghq-fzf() {
