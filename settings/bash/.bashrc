@@ -88,10 +88,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Export definitions.
-if [ -f ~/.bash_exports ]; then
-    . ~/.bash_exports
-fi
 
 # bash completion
 if ! shopt -oq posix; then
