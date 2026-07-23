@@ -40,6 +40,14 @@ command = "lazygit"
 width = "80%"
 height = "80%"
 
+# glow: markdown ブラウザを popup で (Claude が書いた plan.md 等を整形表示)
+[[keys.command]]
+key = "prefix+alt+m"
+type = "popup"
+command = "glow"
+width = "90%"
+height = "90%"
+
 # herdr-file-viewer プラグイン (git-aware read-only ビューア) をスプリットで開く
 # 要: herdr plugin install smarzban/herdr-file-viewer (レンダラーは glow / delta / bat)
 [[keys.command]]
