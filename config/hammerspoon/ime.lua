@@ -75,3 +75,38 @@ ctrlbToEnglish = hs.hotkey.new({ "ctrl" }, "b", function()
     end)
 end)
 ctrlbToEnglish:enable()
+
+-- Shift+; (":"): Auto-switch to English and pass ":" through.
+-- Enabled only while WezTerm is frontmost, so TUI command prompts
+-- (k9s, vim, ...) open even when the IME is in Japanese mode.
+-- Trade-off: full-width "：" cannot be typed inside WezTerm.
+local WEZTERM_BUNDLE_ID = "com.github.wez.wezterm"
+
+local colonToEnglish
+colonToEnglish = hs.hotkey.new({ "shift" }, ";", function()
+    if not isEnglish() then
+        switchToEnglish()
+    end
+    colonToEnglish:disable()
+    hs.eventtap.keyStroke({ "shift" }, ";", 0)
+    hs.timer.doAfter(0.15, function()
+        colonToEnglish:enable()
+    end)
+end)
+
+local weztermWatcher = hs.application.watcher.new(function(_, event, app)
+    if not app or app:bundleID() ~= WEZTERM_BUNDLE_ID then
+        return
+    end
+    if event == hs.application.watcher.activated then
+        colonToEnglish:enable()
+    elseif event == hs.application.watcher.deactivated then
+        colonToEnglish:disable()
+    end
+end)
+weztermWatcher:start()
+
+local frontmost = hs.application.frontmostApplication()
+if frontmost and frontmost:bundleID() == WEZTERM_BUNDLE_ID then
+    colonToEnglish:enable()
+end
