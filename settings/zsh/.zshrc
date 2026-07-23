@@ -95,9 +95,17 @@ setopt SHARE_HISTORY
 # fzf: completion & key-bindings are handled by oh-my-zsh fzf plugin
 # config/zsh/fzf.zsh is NOT sourced here (it would override fzf-tab's Tab binding)
 
-# kubectl
+# kubectl (colorized via kubecolor when available)
 if command -v kubectl > /dev/null 2>&1; then
-  alias k=kubectl
+  if command -v kubecolor > /dev/null 2>&1; then
+    alias kubectl=kubecolor
+    alias k=kubecolor
+    # reuse kubectl's completion for kubecolor (skip if kubectl's
+    # completion is not registered yet, e.g. stale zcompdump)
+    (( ${+_comps[kubectl]} )) && compdef kubecolor=kubectl
+  else
+    alias k=kubectl
+  fi
 fi
 
 # zoxide
