@@ -66,6 +66,9 @@ M.keys = {
     { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollByLine(1) },
 
     -- Misc
+    -- CTRL+SHIFT+N (デフォルト SpawnWindow) は herdr の prefix+Shift+N と干渉するため無効化
+    { key = 'N', mods = 'CTRL', action = act.DisableDefaultAssignment },
+    { key = 'n', mods = 'SHIFT|CTRL', action = act.DisableDefaultAssignment },
     { key = 'Enter', mods = 'SHIFT', action = act { SendString = '\x1b\r' } },
     { key = 'u', mods = 'CTRL', action = act.EmitEvent 'toggle-opacity' },
 }
