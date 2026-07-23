@@ -1,0 +1,15 @@
+k9s:
+  liveViewAutoRefresh: false
+  refreshRate: 2
+  maxConnRetry: 5
+  readOnly: false
+  ui:
+    skin: snazzy
+    enableMouse: false
+    headless: false
+    logoless: false
+    crumbsless: false
+  logger:
+    tail: 100
+    buffer: 5000
+    sinceSeconds: -1

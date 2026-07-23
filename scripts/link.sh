@@ -58,3 +58,9 @@ link_dotfile ./config/starship/starship.toml $HOME/.config/starship.toml
 # herdr (config.toml のみリンク。~/.config/herdr/ にはソケット・ログが生成される)
 mkdir -p $HOME/.config/herdr
 link_dotfile ./config/herdr/config.toml $HOME/.config/herdr/config.toml
+
+# k9s (config.yaml と skins のみリンク。~/.config/k9s/ にはログ・クラスタ状態が生成される)
+# K9S_CONFIG_DIR=$HOME/.config/k9s を config/shell/env.sh で設定している
+mkdir -p $HOME/.config/k9s
+link_dotfile ./config/k9s/config.yaml $HOME/.config/k9s/config.yaml
+link_dotfile ./config/k9s/skins $HOME/.config/k9s/skins
