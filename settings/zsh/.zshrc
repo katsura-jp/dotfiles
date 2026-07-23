@@ -167,3 +167,14 @@ if [ "$(uname)" = "Darwin" ] && [ -f /opt/homebrew/bin/brew ]; then
   fi
   unset _brew_prefix
 fi
+
+# herdr: hd で起動。--remote 時はホスト名の名前付きセッションを自動指定し、
+# ソケットを ~/.config/herdr/sessions/<host>/herdr.sock (ホスト専用) にする
+hd() {
+  if [[ "$1" == --remote && -n "$2" && "$*" != *--session* ]]; then
+    herdr --remote "$2" --session "${${2##*@}%%.*}" "${@:3}"
+  else
+    herdr "$@"
+  fi
+}
+compdef hd=herdr 2>/dev/null
